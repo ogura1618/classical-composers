@@ -91,12 +91,13 @@
         .dot-sample { width: 12px; height: 12px; border-radius: 50%; }
 
         #view-list { display: none; max-width: 1000px; margin: 0 auto; padding: 15px; }
-        .works-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); table-layout: fixed; }
+        .works-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .works-table th, .works-table td { padding: 12px 10px; border-bottom: 1px solid #eee; text-align: left; vertical-align: top; }
         .works-table th { background: #e6ded3; font-weight: bold; white-space: nowrap; font-size: 0.85rem; border-bottom: 2px solid #8b7355; }
         .col-date { width: 80px; white-space: nowrap; font-family: 'Cinzel', serif; font-size: 0.8rem; }
         .col-age { width: 70px; text-align: center; white-space: nowrap; font-size: 0.8rem; }
-        .col-action { width: 95px; text-align: center; white-space: nowrap; }
+        .col-action { width: 180px; text-align: center; }
+        .col-action-inner { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 6px; }
 
         #chat-widget { position: fixed; bottom: 20px; right: 20px; z-index: 3000; display: none; }
         #chat-button { width: 52px; height: 52px; border-radius: 50%; background: #2c241b; color: #fff; border: none; font-size: 20px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: 0.2s; -webkit-tap-highlight-color: transparent; }
@@ -154,6 +155,7 @@
             .works-table td.col-age { width: auto; text-align: left; }
             .works-table td:nth-child(3) { width: 100%; order: -1; }
             .works-table td.col-action { width: auto; text-align: left; }
+            .col-action-inner { flex-direction: row; flex-wrap: wrap; }
             #chat-widget { bottom: 12px; right: 12px; }
             #chat-button { width: 48px; height: 48px; font-size: 18px; }
             #chat-window { bottom: 58px; height: 380px; }
@@ -2720,8 +2722,10 @@ function renderAll(c) {
                     '<div style="font-size:0.72rem; color:#888; margin-top:2px;">' + (ev.title_en || '') + '</div>' +
                 '</td>' +
                 '<td class="col-action">' +
+                    '<div class="col-action-inner">' +
                     '<button class="analyze-btn" onclick="analyzeEvent(\'' + safeTitle + '\', \'work\')">&#x2728; \u89E3\u8AAC</button>' +
                     '<a class="apple-music-btn" href="' + buildAppleMusicUrl(c.name, ev.title_en || ev.title) + '" target="_blank" rel="noopener">&#x266B;</a>' +
+                    '</div>' +
                 '</td>';
             listBody.appendChild(tr);
         }
