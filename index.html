@@ -83,6 +83,9 @@
         .analyze-btn { display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; padding: 6px 14px; font-size: 0.72rem; white-space: nowrap; background: linear-gradient(135deg, #f8f6f3, #efe9e0); border: 1px solid #d4c9b8; border-radius: 18px; cursor: pointer; color: #5a4a38; font-family: 'Noto Serif JP', serif; font-weight: bold; transition: all 0.2s; -webkit-tap-highlight-color: transparent; }
         .analyze-btn:hover { background: linear-gradient(135deg, #efe9e0, #e6ded3); border-color: #8b7355; color: #2c241b; box-shadow: 0 2px 8px rgba(139,115,85,0.2); }
         .analyze-btn:active { transform: scale(0.96); }
+        .apple-music-btn { display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; margin-left: 6px; padding: 6px 14px; font-size: 0.72rem; white-space: nowrap; background: linear-gradient(135deg, #fc3c44, #e02a34); border: none; border-radius: 18px; cursor: pointer; color: #fff; font-family: 'Noto Serif JP', serif; font-weight: bold; transition: all 0.2s; -webkit-tap-highlight-color: transparent; text-decoration: none; }
+        .apple-music-btn:hover { background: linear-gradient(135deg, #e02a34, #c91f29); box-shadow: 0 2px 8px rgba(252,60,68,0.3); }
+        .apple-music-btn:active { transform: scale(0.96); }
         .legend { display: flex; justify-content: center; gap: 20px; margin: 14px 0 8px; font-size: clamp(0.72rem, 2vw, 0.82rem); }
         .legend-item { display: flex; align-items: center; gap: 6px; }
         .dot-sample { width: 12px; height: 12px; border-radius: 50%; }
@@ -158,7 +161,7 @@
         @media (min-width: 769px) and (max-width: 1024px) { .timeline-content-wrapper { padding: 0 24px; } .event-card { padding: 12px 14px; } }
         @media (min-width: 1025px) { .timeline-content-wrapper { padding: 0 40px; } }
         @media (max-width: 380px) { .header-controls { gap: 6px; } .switch-btn { padding: 6px 12px; } .timeline-item { padding-left: 30px !important; } #timeline-line { left: 12px; } .timeline-dot { left: 12px; } .year-row { padding-left: 30px; } }
-        @media print { header { position: static; box-shadow: none; } .analyze-btn, #chat-widget, .settings-btn, .back-btn { display: none; } .event-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; } }
+        @media print { header { position: static; box-shadow: none; } .analyze-btn, .apple-music-btn, #chat-widget, .settings-btn, .back-btn { display: none; } .event-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; } }
     </style>
 </head>
 <body>
@@ -2620,6 +2623,11 @@ const GROQ_MODEL = 'llama-3.3-70b-versatile';
 
 let currentComposer = null;
 
+function buildAppleMusicUrl(composerName, title) {
+    var q = composerName + ' ' + title;
+    return 'https://music.apple.com/search?term=' + encodeURIComponent(q);
+}
+
 function getApiKey() {
     return localStorage.getItem('composer_groq_key') || DEFAULT_GROQ_KEY;
 }
@@ -2696,6 +2704,7 @@ function renderAll(c) {
                     titleEnHtml +
                     '<div class="desc">' + ev.desc + '</div>' +
                     '<button class="analyze-btn" onclick="analyzeEvent(\'' + safeTitle + '\', \'' + ev.type + '\')">&#x2728; \u89E3\u8AAC</button>' +
+                    (ev.type === 'work' ? '<a class="apple-music-btn" href="' + buildAppleMusicUrl(c.name, ev.title_en || ev.title) + '" target="_blank" rel="noopener">&#x266B; Apple Music</a>' : '') +
                 '</div>' +
             '</div>';
         flow.appendChild(item);
@@ -2712,6 +2721,7 @@ function renderAll(c) {
                 '</td>' +
                 '<td class="col-action">' +
                     '<button class="analyze-btn" onclick="analyzeEvent(\'' + safeTitle + '\', \'work\')">&#x2728; \u89E3\u8AAC</button>' +
+                    '<a class="apple-music-btn" href="' + buildAppleMusicUrl(c.name, ev.title_en || ev.title) + '" target="_blank" rel="noopener">&#x266B;</a>' +
                 '</td>';
             listBody.appendChild(tr);
         }
