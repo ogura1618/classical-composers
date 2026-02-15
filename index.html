@@ -7399,7 +7399,14 @@ function openAppleMusic(composerName, title) {
 }
 function openClassical(composerName, title) {
     var q = composerName + ' ' + title;
-    window.open('classical-search.html?q=' + encodeURIComponent(q), '_blank');
+    var url = 'https://classical.music.apple.com/jp/search?term=' + encodeURIComponent(q);
+    if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+        navigator.clipboard.writeText(q);
+        showToast('検索語をコピーしました。アプリの検索欄にペーストしてください');
+        window.open(url, '_blank');
+    } else {
+        window.open(url, '_blank');
+    }
 }
 
 function getSupraHtml(composerKey, opus, isCompact) {
