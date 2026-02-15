@@ -7401,8 +7401,15 @@ function openClassical(composerName, title) {
     var q = composerName + ' ' + title;
     var url = 'https://classical.music.apple.com/jp/search?term=' + encodeURIComponent(q);
     if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
-        navigator.clipboard.writeText(q);
-        showToast('検索語をコピーしました。アプリの検索欄にペーストしてください');
+        var ta = document.createElement('textarea');
+        ta.value = q;
+        ta.style.cssText = 'position:fixed;opacity:0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast('検索語をコピーしました。アプリの検索欄を長押し→ペーストしてください');
         window.open(url, '_blank');
     } else {
         window.open(url, '_blank');
