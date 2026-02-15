@@ -7387,7 +7387,7 @@ let currentComposer = null;
 
 function buildAppleMusicUrl(composerName, title) {
     var q = composerName + ' ' + title;
-    return 'https://music.apple.com/search?term=' + encodeURIComponent(q);
+    return 'https://classical.music.apple.com/jp/search?term=' + encodeURIComponent(q);
 }
 
 function getSupraHtml(composerKey, opus, isCompact) {
@@ -7516,7 +7516,7 @@ function renderAll(c, composerKey) {
                     titleEnHtml +
                     '<div class="desc">' + ev.desc + '</div>' +
                     '<button class="analyze-btn" onclick="analyzeEvent(\'' + safeTitle + '\', \'' + ev.type + '\')">&#x2728; \u89E3\u8AAC</button>' +
-                    (ev.type === 'work' ? '<a class="apple-music-btn" href="' + buildAppleMusicUrl(c.name, ev.title_en || ev.title) + '" target="_blank" rel="noopener">&#x266B; Apple Music</a>' + getSupraHtml(composerKey, ev.opus, false) : '') +
+                    (ev.type === 'work' ? '<a class="apple-music-btn" href="' + buildAppleMusicUrl(c.name, ev.title_en || ev.title) + '" target="_blank" rel="noopener">&#x266B; Apple Music Classical</a>' + getSupraHtml(composerKey, ev.opus, false) : '') +
                 '</div>' +
             '</div>';
         flow.appendChild(item);
