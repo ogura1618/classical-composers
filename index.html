@@ -7391,16 +7391,15 @@ let currentComposer = null;
 function openAppleMusic(composerName, title) {
     var q = composerName + ' ' + title;
     var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
-    var url = isIOS
-        ? 'https://music.apple.com/search?term=' + encodeURIComponent(q)
-        : 'https://music.apple.com/jp/search?term=' + encodeURIComponent(q);
-    window.open(url, '_blank');
+    if (isIOS) {
+        window.open('https://music.apple.com/search?term=' + encodeURIComponent(q), '_blank');
+    } else {
+        window.location.href = 'music://music.apple.com/jp/search?term=' + encodeURIComponent(q);
+    }
 }
 function openClassical(composerName, title) {
     var q = composerName + ' ' + title;
-    var url = 'https://classical.music.apple.com/jp/search?term=' + encodeURIComponent(q);
-    var w = window.open('', '_blank');
-    if (w) { w.document.write('<script>location.replace("' + url.replace(/"/g, '\\"') + '")<\/script>'); w.document.close(); }
+    window.open('classical-search.html?q=' + encodeURIComponent(q), '_blank');
 }
 
 function getSupraHtml(composerKey, opus, isCompact) {
