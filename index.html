@@ -7388,15 +7388,19 @@ const GROQ_MODEL = 'llama-3.3-70b-versatile';
 
 let currentComposer = null;
 
-function buildAppleMusicUrl(composerName, title) {
+function openAppleMusic(composerName, title) {
     var q = composerName + ' ' + title;
-    return 'https://music.apple.com/jp/search?term=' + encodeURIComponent(q);
+    var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+    var url = isIOS
+        ? 'https://music.apple.com/search?term=' + encodeURIComponent(q)
+        : 'https://music.apple.com/jp/search?term=' + encodeURIComponent(q);
+    window.open(url, '_blank');
 }
 function openClassical(composerName, title) {
     var q = composerName + ' ' + title;
     var url = 'https://classical.music.apple.com/jp/search?term=' + encodeURIComponent(q);
-    var w = window.open('about:blank', '_blank');
-    if (w) w.location.href = url;
+    var w = window.open('', '_blank');
+    if (w) { w.document.write('<script>location.replace("' + url.replace(/"/g, '\\"') + '")<\/script>'); w.document.close(); }
 }
 
 function getSupraHtml(composerKey, opus, isCompact) {
@@ -7525,7 +7529,7 @@ function renderAll(c, composerKey) {
                     titleEnHtml +
                     '<div class="desc">' + ev.desc + '</div>' +
                     '<button class="analyze-btn" onclick="analyzeEvent(\'' + safeTitle + '\', \'' + ev.type + '\')">&#x2728; \u89E3\u8AAC</button>' +
-                    (ev.type === 'work' ? '<a class="apple-music-btn" href="' + buildAppleMusicUrl(c.name, ev.title_en || ev.title) + '" target="_blank" rel="noopener">&#x266B; Apple Music</a><button class="classical-btn" onclick="openClassical(\'' + c.name.replace(/'/g, "\\'") + '\', \'' + (ev.title_en || ev.title).replace(/'/g, "\\'") + '\')">&#x266B; Classical</button>' + getSupraHtml(composerKey, ev.opus, false) : '') +
+                    (ev.type === 'work' ? '<button class="apple-music-btn" onclick="openAppleMusic(\'' + c.name.replace(/'/g, "\\'") + '\', \'' + (ev.title_en || ev.title).replace(/'/g, "\\'") + '\')">&#x266B; Apple Music</button><button class="classical-btn" onclick="openClassical(\'' + c.name.replace(/'/g, "\\'") + '\', \'' + (ev.title_en || ev.title).replace(/'/g, "\\'") + '\')">&#x266B; Classical</button>' + getSupraHtml(composerKey, ev.opus, false) : '') +
                 '</div>' +
             '</div>';
         flow.appendChild(item);
@@ -7543,7 +7547,7 @@ function renderAll(c, composerKey) {
                 '<td class="col-action">' +
                     '<div class="col-action-inner">' +
                     '<button class="analyze-btn" onclick="analyzeEvent(\'' + safeTitle + '\', \'work\')">&#x2728; \u89E3\u8AAC</button>' +
-                    '<a class="apple-music-btn" href="' + buildAppleMusicUrl(c.name, ev.title_en || ev.title) + '" target="_blank" rel="noopener">&#x266B; Apple Music</a>' +
+                    '<button class="apple-music-btn" onclick="openAppleMusic(\'' + c.name.replace(/'/g, "\\'") + '\', \'' + (ev.title_en || ev.title).replace(/'/g, "\\'") + '\')">&#x266B; Apple Music</button>' +
                     '<button class="classical-btn" onclick="openClassical(\'' + c.name.replace(/'/g, "\\'") + '\', \'' + (ev.title_en || ev.title).replace(/'/g, "\\'") + '\')">&#x266B; Classical</button>' +
                     getSupraHtml(composerKey, ev.opus, true) +
                     '</div>' +
