@@ -86,6 +86,9 @@
         .apple-music-btn { display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; margin-left: 6px; padding: 6px 14px; font-size: 0.72rem; white-space: nowrap; background: linear-gradient(135deg, #fc3c44, #e02a34); border: none; border-radius: 18px; cursor: pointer; color: #fff; font-family: 'Noto Serif JP', serif; font-weight: bold; transition: all 0.2s; -webkit-tap-highlight-color: transparent; text-decoration: none; }
         .apple-music-btn:hover { background: linear-gradient(135deg, #e02a34, #c91f29); box-shadow: 0 2px 8px rgba(252,60,68,0.3); }
         .apple-music-btn:active { transform: scale(0.96); }
+        .supra-btn { display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; margin-left: 6px; padding: 6px 14px; font-size: 0.72rem; white-space: nowrap; background: linear-gradient(135deg, #D4A76A, #B8860B); border: none; border-radius: 18px; cursor: pointer; color: #fff; font-family: 'Noto Serif JP', serif; font-weight: bold; transition: all 0.2s; -webkit-tap-highlight-color: transparent; text-decoration: none; }
+        .supra-btn:hover { background: linear-gradient(135deg, #B8860B, #8B6914); box-shadow: 0 2px 8px rgba(184,134,11,0.3); }
+        .supra-btn:active { transform: scale(0.96); }
         .legend { display: flex; justify-content: center; gap: 20px; margin: 14px 0 8px; font-size: clamp(0.72rem, 2vw, 0.82rem); }
         .legend-item { display: flex; align-items: center; gap: 6px; }
         .dot-sample { width: 12px; height: 12px; border-radius: 50%; }
@@ -163,7 +166,7 @@
         @media (min-width: 769px) and (max-width: 1024px) { .timeline-content-wrapper { padding: 0 24px; } .event-card { padding: 12px 14px; } }
         @media (min-width: 1025px) { .timeline-content-wrapper { padding: 0 40px; } }
         @media (max-width: 380px) { .header-controls { gap: 6px; } .switch-btn { padding: 6px 12px; } .timeline-item { padding-left: 30px !important; } #timeline-line { left: 12px; } .timeline-dot { left: 12px; } .year-row { padding-left: 30px; } }
-        @media print { header { position: static; box-shadow: none; } .analyze-btn, .apple-music-btn, #chat-widget, .settings-btn, .back-btn { display: none; } .event-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; } }
+        @media print { header { position: static; box-shadow: none; } .analyze-btn, .apple-music-btn, .supra-btn, #chat-widget, .settings-btn, .back-btn { display: none; } .event-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; } }
     </style>
 </head>
 <body>
@@ -7264,6 +7267,105 @@ const COMPOSERS = {
     }
 };
 
+const SUPRA_DATA = {
+    "brahms": {
+        "Op.119": [{druid:"wh678yv0330",title:"Intermezzo C Dur, op. 119, no. 3",performer:"Schnabel, Artur"}],
+        "Op.39": [{druid:"kg327qk8426",title:"Waltzes op. 39, 1. and 2.",performer:"Galston, Gottfried"},{druid:"xm978sg7252",title:"Waltzes op. 39, no. 15 and 16",performer:"Galston, Gottfried"},{druid:"yw484ky7093",title:"Waltzes op. 39, 6 and 11",performer:"Galston, Gottfried"}],
+        "Op.5": [{druid:"rk591jt8964",title:"Sonata F minor, op. 5, 1st movement",performer:"Carreño, Teresa"},{druid:"tx437pj1389",title:"Sonata F minor, op. 5",performer:"Ney, Elly"}],
+        "Op.76": [{druid:"jf938sf5847",title:"Intermezzo op. 76, no. 2",performer:"Paur, Emil"},{druid:"jj589sc7898",title:"Cappriccio op. 76, no. 2",performer:"Dohnányi, Ernő"}],
+    },
+    "chopin": {
+        "Op.10": [{druid:"mj416dn1432",title:"Etude op. 10, no. 12 : (Revolutions-Etude)",performer:"Galston, Gottfried"},{druid:"qv334zb6243",title:"Etude E-Dur, op. 10, no. 3",performer:"Paderewski, Ignace Jan"},{druid:"st755cm2486",title:"Etude op. 10, no. 5, Ges-Dur",performer:"Schnabel, Artur"},{druid:"wg598sj1504",title:"Etude Ges Dur, op. 10, no. 5",performer:"Di Benici, Tosta"}],
+        "Op.11": [{druid:"bs279zc9206",title:"Concerto E minor",performer:"Goraïnoff, Irina"},{druid:"qf640sj3141",title:"Concert e-Moll, op. 11",performer:"Goraïnoff, Irina"},{druid:"xm418xm6937",title:"Concerto op. 11, E minor, 1st movement",performer:"Koczalski, Raoul"},{druid:"yk477xx5343",title:"Concerto op. 11, E minor",performer:"Goraïnoff, Irina"},{druid:"zp866tm4852",title:"Pianoforte concerto op. II, E minor",performer:"Backhaus, Wilhelm"}],
+        "Op.15 No.2": [{druid:"tx963yw9164",title:"Nocturne F sharp, op. 15, no. 2",performer:"Saint-Saëns, Camille"},{druid:"vm423wb2944",title:"Nocturn op. 15, no. 2, Fis-Dur",performer:"Pugno, Raoul"},{druid:"wz719qg6993",title:"Nocturne op. 15, no. 2, Fis-Dur",performer:"Busoni, Ferruccio"}],
+        "Op.2": [{druid:"kv601my2750",title:"Prelude, A flat major",performer:"Esipova, Anna Nikolaevna"}],
+        "Op.22": [{druid:"zc614qh7060",title:"Grande polonaise : op. 22, Es-Dur",performer:"Pugno, Raoul"}],
+        "Op.23": [{druid:"bj606rp8160",title:"Ballade op. 23, G minor",performer:"Carreño, Teresa"}],
+        "Op.25": [{druid:"ch197br4742",title:"Etude op. 25, no. 9 : (staccato)",performer:"Sauer, Emil von"},{druid:"ft746ns5736",title:"Etude op. 25, no. 9, G flat",performer:"Paderewski, Ignace Jan"},{druid:"hp956bx4547",title:"Etude Ges-Dur : Staccato : op. 25, no. 9",performer:"Paderewski, Ignace Jan"}],
+        "Op.27 No.2": [{druid:"rp390kt0160",title:"Nocturne Des-Dur, op. 27, no. 2",performer:"Sauer, Emil von"},{druid:"vs167qc5364",title:"Nocturne, D flat major, op. 27, no. 2",performer:"Hofmann, Josef"}],
+        "Op.28": [{druid:"fn111kx0654",title:"Prélude op. 28, no. 20, c-Moll",performer:"Pachmann, Vladimir de"},{druid:"gc795vb4435",title:"Prelude op. 28, Nr. 15, D flat",performer:"Busoni, Ferruccio"},{druid:"gs573tj9547",title:"Preludes op. 28, nos. 6 & 11",performer:"Fryer, Herbert"},{druid:"jm300wy4714",title:"Prelude op. 28, no. 18, F minor",performer:"Di Benici, Tosta"},{druid:"kg488qt3887",title:"2 préludes : op. 28, Nr. 1, C-Dur u. Nr. 21, B-Dur",performer:"Schelling, Ernest"},{druid:"pz175wg5571",title:"Préludes, op. 28, no. 1, C major, op. 28, no. 21, B flat",performer:"Schelling, Ernest"},{druid:"vj076nk8220",title:"Prelude op. 28, no. 20, C minor",performer:"Pachmann, Vladimir de"},{druid:"wq296df7434",title:"Prelude op. 28, no. 16, B-flat minor",performer:"Pachmann, Vladimir de"}],
+        "Op.32 No.1": [{druid:"gg384dv5303",title:"Nocturne H-Dur op. 32",performer:"Grünfeld, Alfred"}],
+        "Op.35": [{druid:"fh358rd2268",title:"Sonata op. 35, B minor",performer:"Bloomfield-Zeisler, Fannie"},{druid:"kw738fg7467",title:"Sonata op. 35",performer:"Bloomfield-Zeisler, Fannie"},{druid:"ym117yd8356",title:"Sonata b-Moll, op. 35",performer:"Margolies, Vera"}],
+        "Op.37 No.2": [{druid:"rj799hj0968",title:"Nocturne G major, op. 37, no. 2",performer:"Carreño, Teresa"},{druid:"st828pc9818",title:"Nocturne op. 37, no. 2, G major",performer:"Carreño, Teresa"}],
+        "Op.39": [{druid:"zx463rv8885",title:"Scherzo op. 39",performer:"Droucker, Sandra"}],
+        "Op.4": [{druid:"bf074nj8801",title:"Sonata B minor",performer:"Samaroff Stokowski, Olga"},{druid:"dw559kr7002",title:"Sonata B minor",performer:"Samaroff Stokowski, Olga"},{druid:"wz252pk3255",title:"Sonata B minor",performer:"Samaroff Stokowski, Olga"}],
+        "Op.40 No.1": [{druid:"bm016sg7202",title:"Polonaise : (polonaise militaire) : op. 40, no. 1",performer:"Margolies, Vera"}],
+        "Op.42": [{druid:"vy018tw5237",title:"Valse op. 42 As-Dur",performer:"Scharwenka, Xaver"}],
+        "Op.44": [{druid:"qq244fh1388",title:"Polonaise op. 44, fis-Moll",performer:"Hofmann, Josef"}],
+        "Op.47": [{druid:"bb988jx6754",title:"Ballade op. 47, A flat major",performer:"Carreño, Teresa"},{druid:"hc229ht1024",title:"Ballade op. 47, A flat major",performer:"Paderewski, Ignace Jan"},{druid:"ky458kj7325",title:"Ballade, op. 47, A major",performer:"Novaes, Guiomar"}],
+        "Op.48 No.1": [{druid:"gs556hk6631",title:"Nocturne op. 48, no. 1, C minor",performer:"Carreño, Teresa"}],
+        "Op.53": [{druid:"fr853pn6519",title:"Polonaise op. 53, A flat",performer:"Albert, Eugen d'"},{druid:"sm246yb9650",title:"Polonaise A flat major, op. 53",performer:"Paderewski, Ignace Jan"}],
+        "Op.54": [{druid:"xc665jf8254",title:"Scherzo E-Dur, op. 54",performer:"Motta, José Vianna da"}],
+        "Op.55 No.2": [{druid:"nf274ng7905",title:"Nocturne op. 55, no. 2, E flat major",performer:"Krah, Alexander"}],
+        "Op.64 No.1": [{druid:"cw078rn1143",title:"Waltz, D flat major, op. 64, no. 1",performer:"Pachmann, Vladimir de"}],
+        "Op.64 No.2": [{druid:"jh069yf5255",title:"Waltz op. 64, no. 2, C-sharp minor",performer:"Wurmser, Lucien"},{druid:"nf733yv1324",title:"Valse op. 64, no. 2, cis-Moll",performer:"Dohnányi, Ernő"}],
+        "Op.67 (posth.)": [{druid:"nq087cp3030",title:"Mazurka op. 67, no. 4",performer:"Adam-Benard, Eugenie"}],
+        "Op.69 No.1 (posth.)": [{druid:"kv921kh0629",title:"Valse op. 69, no. 1, As-Dur",performer:"Stavenhagen, Bernhard"}],
+        "Op.70 No.1 (posth.)": [{druid:"kt780tm7975",title:"Valse op. 70",performer:"Lamond, Frederic"},{druid:"zw904vm6502",title:"Waltz, op. 70, no. 1",performer:"Bloomfield-Zeisler, Fannie"}],
+        "Op.9 No.1": [{druid:"gf160gq3516",title:"Nocturne op. 9, no. 1, B-flat minor",performer:"Albert, Eugen d'"}],
+        "Op.9 No.2": [{druid:"nq628rc4181",title:"Nocturne op. 9, no. 2, E flat major",performer:"Adam-Benard, Eugenie"}],
+    },
+    "debussy": {
+        "L.113": [{druid:"dc920rk8870",title:"Children's corner",performer:"Debussy, Claude"}],
+    },
+    "grieg": {
+        "Op.16": [{druid:"ym773gh2267",title:"Concerto A minor",performer:"Samaroff Stokowski, Olga"},{druid:"yr522jf5585",title:"Concerto A minor, op. 16",performer:"Samaroff Stokowski, Olga"}],
+        "Op.23": [{druid:"bf644yy6536",title:"Peer Gynt suite II",performer:"Samaroff Stokowski, Olga"},{druid:"vz717bq6543",title:"Peer Gynt suite",performer:"Samaroff Stokowski, Olga"}],
+        "Op.43": [{druid:"jw822wm2644",title:"Butterfly : op. 43, no. 1",performer:"Grieg, Edvard"},{druid:"kj344bw3083",title:"An den Frühling : op. 43, no. 1 : (Lyrische Stücke)",performer:"Pugno, Raoul"},{druid:"zf882fv0052",title:"Vögelein a. Lyrische Stücke, op. 43",performer:"Grieg, Edvard"}],
+        "Op.65": [{druid:"hs635sh6729",title:"Hochzeitstag auf Troldhangen op. 65 no. 1",performer:"Wendling, Carl"}],
+    },
+    "handel": {
+        "HWV 348": [{druid:"hx184ww0780",title:"The harmonius blacksmith : E major, 5th suite = Le forgeron harmonieux",performer:"Adam-Benard, Eugenie"}],
+    },
+    "liszt": {
+        "S.139/8": [{druid:"cv806rf2664",title:"Wilde Jagd : Etude",performer:"Kwast-Hodapp, Frieda"}],
+        "S.141/3": [{druid:"kv550vj8954",title:"La campanella : Paganini etude no. 3",performer:"Busoni, Ferruccio"}],
+        "S.144/1": [{druid:"jy572md2211",title:"Piano-concert E major",performer:"Lászlò, Sándor"}],
+        "S.145/1": [{druid:"st011pr3757",title:"Waldesrauschen : 1st concert étude",performer:"Schumann, Georg"}],
+        "S.153": [{druid:"mh120sr5901",title:"Paganini étude no. 2, E flat major",performer:"Friedheim, Arthur"}],
+        "S.162/1": [{druid:"yc867qr9425",title:"Gondoliera from Venezia e Napoli",performer:"Danziger, Laura"}],
+        "S.163/2": [{druid:"fd761bx2206",title:"Années de pélerinage, III, no. 4 : les jeux d'eaux de la Villa d'Este",performer:"Petri, Egon"}],
+        "S.171": [{druid:"hw588xk2111",title:"2nd ballade B minor",performer:"Friedheim, Arthur"}],
+        "S.178": [{druid:"gy310qs3678",title:"Sonata B minor, part 1",performer:"Albert, Eugen d'"},{druid:"vy193qr6005",title:"Sonata B minor, 2nd part",performer:"Albert, Eugen d'"}],
+        "S.223/2": [{druid:"jf649gs2184",title:"Polonaise E major",performer:"Hambourg, Mark"}],
+        "S.244/2": [{druid:"bx815rz0622",title:"12th hungarian rhapsody : (as played by Liszt)",performer:"Stavenhagen, Bernhard"},{druid:"fv104hn7521",title:"V. Hungarian rhapsody : (Heroide elegique)",performer:"Rössel, Anatol von"},{druid:"yx536mq2915",title:"6th Hungarian rhapsody",performer:"Carreño, Teresa"},{druid:"zk440mh1715",title:"2nd Hungarian rhapsody",performer:"Mero, Yolanda"},{druid:"zv884mc0794",title:"10th Hungarian rhapsody",performer:"Paderewski, Ignace Jan"}],
+        "S.434": [{druid:"mf443ns5829",title:"Rigoletto : (paraphrase)",performer:"Busoni, Ferruccio"},{druid:"pv151xx7555",title:"Rigoletto (paraphrase)",performer:"Esipova, Anna Nikolaevna"}],
+        "S.442": [{druid:"fj448by1666",title:"Tannhäuser-Marsch",performer:"Samaroff Stokowski, Olga"}],
+    },
+    "mendelssohn": {
+        "MWV N 5": [{druid:"zv706jf8277",title:"Duetto : (Song without words) : A flat major",performer:"Kleeberg, Clotilde"}],
+        "Op. 14": [{druid:"cw427tw4145",title:"Rondo capriccioso",performer:"Goraïnoff, Irina"},{druid:"tb323rh4122",title:"Rondo capriccioso op. 14",performer:"Hofmann, Josef"}],
+        "Op. 62": [{druid:"ym420hv4366",title:"Lied ohne Worte, op. 62, [no. 4], no. 28",performer:"Möhle, Hermann"}],
+    },
+    "rachmaninoff": {
+        "Op.3": [{druid:"kj388dj3308",title:"Prelude op. 3, no. 2, C sharp minor",performer:"Hill, R"},{druid:"pz923dx9638",title:"Prelude op. 3, no. 2",performer:"Rössel, Anatol von"},{druid:"qj203cn5343",title:"Polichenelle : op. 3, no. 4",performer:"Pouishnoff, Leff"}],
+    },
+    "schumann": {
+        "": [{druid:"cw211cn1219",title:"Davidsbündler dances",performer:"Neitzel, Otto"},{druid:"ds710xd1794",title:"Scenes from childhood",performer:"Davies, Fanny"},{druid:"xj540rr2929",title:"Vogel als Prophet",performer:"Pachmann, Vladimir de"}],
+        "Op.1": [{druid:"jk211zx0169",title:"Abegg Varationen : op. 1",performer:"Petri, Egon"}],
+        "Op.12": [{druid:"yg150mb0559",title:"Des Abends op. 12",performer:"Grünfeld, Alfred"}],
+        "Op.15": [{druid:"wv912mm2332",title:"Traumerei : op. 15, no. 7",performer:"Grünfeld, Alfred"}],
+        "Op.17": [{druid:"gf569df0451",title:"Fantasia op. 17, C-major",performer:"Carreño, Teresa"},{druid:"kx034vy1374",title:"Fantasie op. 17, C-Dur",performer:"Carreño, Teresa"},{druid:"vm096df0179",title:"Fantasie C-Dur, op. 17",performer:"Carreño, Teresa"}],
+        "Op.18": [{druid:"ph502kz9777",title:"Arabesque C major op. 18",performer:"Droucker, Sandra"}],
+        "Op.22": [{druid:"hn285vs3930",title:"2nd sonata, op. 22, no. 2, G minor : scherzo, rondo, presto",performer:"Grosz, Gisella"},{druid:"sk293jg8184",title:"2nd sonata, op. 22, no. 2, G minor",performer:"Grosz, Gisella"}],
+        "Op.28": [{druid:"nk632jz1564",title:"Romance op. 28, No. 2, Fis-Dur",performer:"Dohnányi, Ernő"}],
+        "Op.54": [{druid:"bj093nh2591",title:"Piano concerto op. 54, A minor",performer:"Adam-Benard, Eugenie"},{druid:"rt595wj4442",title:"Klavierconcert a-Moll, op. 54",performer:"Adam-Benard, Eugenie"}],
+        "Op.7": [{druid:"kx695yq4528",title:"Toccata C major, op. 7",performer:"Lhévinne, Josef"}],
+    },
+    "sibelius": {
+        "Op.34": [{druid:"gt485ys0625",title:"Romance Des Dur, op. 34, no. 9",performer:"Di Benici, Tosta"}],
+    },
+    "tchaikovsky": {
+        "Op.71": [{druid:"fk960pq3086",title:"Casse noisette suite : op. 71, part 1",performer:"Albert, Eugen d'"},{druid:"zc118hn1152",title:"Casse noisette suite op. 71, I. Teil",performer:"Albert, Eugen d'"}],
+        "Op.74": [{druid:"bk297ff8944",title:"Symphonic pathétic op. 74, part. I (final)",performer:"Lászlò, Sándor"},{druid:"gr136pc5388",title:"Symphony pathétique op. 74, no. 6, part III",performer:"Lászlò, Sándor"},{druid:"hk752ck1008",title:"Symphonic pathétic op. 74, no. 6, part II",performer:"Lászlò, Sándor"},{druid:"qm069fy5200",title:"Symphony pathétique op. 74, no. 6, part IV",performer:"Lászlò, Sándor"},{druid:"rv766dc1369",title:"Symphony pathétique op. 74, no. 6, part I",performer:"Lászlò, Sándor"}],
+    },
+    "wagner": {
+        "WWV 70": [{druid:"hh095vc8073",title:"Tannhäuser overture",performer:"Hofmann, Josef"},{druid:"yr287jf4422",title:"Lied a. d. Abendstern : a. Tannhäuser op. 94",performer:"Adam-Benard, Eugenie"}],
+        "WWV 90": [{druid:"nn203bm7432",title:"Tristan und Isolde",performer:"Mottl, Felix"}],
+        "WWV 96": [{druid:"fd660zf8362",title:"Meistersinger von Nürnberg : Vorspiel",performer:"Elvyn, Myrtle"},{druid:"hg709nf1997",title:"Die Meistersinger von Nürnberg : Konzert-Paraphrase",performer:"Rybner, Cornelius"},{druid:"mg285ps6787",title:"Die Meistersinger von Nürnberg",performer:"Mottl, Felix"},{druid:"rp146dk0477",title:"Am stillen Herd zur Winterszeit : a. die Meistersinger von Nürnberg",performer:"Mottl, Felix"}],
+    },
+};
+
 const DEFAULT_GROQ_KEY = '';
 const GROQ_MODEL = 'llama-3.3-70b-versatile';
 
@@ -7272,6 +7374,56 @@ let currentComposer = null;
 function buildAppleMusicUrl(composerName, title) {
     var q = composerName + ' ' + title;
     return 'https://music.apple.com/search?term=' + encodeURIComponent(q);
+}
+
+function getSupraHtml(composerKey, opus, isCompact) {
+    if (!SUPRA_DATA[composerKey]) return '';
+    var recs = SUPRA_DATA[composerKey][opus || ''];
+    if (!recs || recs.length === 0) return '';
+    var url = 'https://ccrma.stanford.edu/~craig/supra-audio/welte-red/mp3-exp/' + recs[0].druid + '.mp3';
+    var performers = recs.map(function(r){ return r.performer; }).filter(function(v,i,a){ return a.indexOf(v)===i; });
+    var tip = performers.join(', ');
+    var label = isCompact ? '\uD83C\uDFB9' : '\uD83C\uDFB9 \u30D4\u30A2\u30CE\u30ED\u30FC\u30EB';
+    if (recs.length > 1) label += ' (' + recs.length + ')';
+    if (recs.length === 1) {
+        return '<a class="supra-btn" href="' + url + '" target="_blank" rel="noopener" title="' + tip + '">' + label + '</a>';
+    }
+    var safeKey = composerKey.replace(/'/g, "\\'");
+    var safeOpus = (opus || '').replace(/'/g, "\\'");
+    return '<button class="supra-btn" onclick="showSupraPopup(event,\'' + safeKey + '\',\'' + safeOpus + '\')" title="' + tip + '">' + label + '</button>';
+}
+
+function showSupraPopup(evt, composerKey, opus) {
+    evt.preventDefault();
+    evt.stopPropagation();
+    var old = document.getElementById('supra-popup');
+    if (old) old.remove();
+    var recs = SUPRA_DATA[composerKey][opus];
+    if (!recs) return;
+    var popup = document.createElement('div');
+    popup.id = 'supra-popup';
+    popup.style.cssText = 'position:fixed;z-index:9999;background:#fff;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.25);padding:12px;min-width:280px;max-width:360px;max-height:300px;overflow-y:auto;font-family:"Noto Serif JP",serif;';
+    var h = '<div style="font-weight:bold;margin-bottom:8px;font-size:0.82rem;color:#5a4a38;">\uD83C\uDFB9 \u30D4\u30A2\u30CE\u30ED\u30FC\u30EB\u9332\u97F3 (' + recs.length + ')</div>';
+    recs.forEach(function(r) {
+        var mp3 = 'https://ccrma.stanford.edu/~craig/supra-audio/welte-red/mp3-exp/' + r.druid + '.mp3';
+        h += '<a href="' + mp3 + '" target="_blank" rel="noopener" style="display:block;padding:8px;font-size:0.78rem;text-decoration:none;color:#333;border-bottom:1px solid #eee;border-radius:6px;transition:background 0.15s;"' +
+            ' onmouseover="this.style.background=\'#f5f0e8\'" onmouseout="this.style.background=\'transparent\'">' +
+            '<strong>' + r.performer + '</strong><br><span style="font-size:0.68rem;color:#888;">' + r.title + '</span></a>';
+    });
+    popup.innerHTML = h;
+    var rect = evt.target.getBoundingClientRect();
+    var top = rect.bottom + 6;
+    var left = rect.left;
+    if (top + 300 > window.innerHeight) top = rect.top - 200;
+    if (left + 300 > window.innerWidth) left = window.innerWidth - 320;
+    popup.style.top = top + 'px';
+    popup.style.left = Math.max(10, left) + 'px';
+    document.body.appendChild(popup);
+    setTimeout(function() {
+        document.addEventListener('click', function closePop(e) {
+            if (!popup.contains(e.target)) { popup.remove(); document.removeEventListener('click', closePop); }
+        });
+    }, 10);
 }
 
 function getApiKey() {
@@ -7292,7 +7444,7 @@ function showComposer(id) {
     document.getElementById('chat-title').textContent = 'Ask ' + c.ja;
     document.getElementById('chat-messages').innerHTML = '<div class="message bot">私は' + c.ja + 'です。私の音楽や人生について何か聞きたいことはありますか？</div>';
 
-    renderAll(c);
+    renderAll(c, id);
     switchView('timeline');
     window.scrollTo(0, 0);
 
@@ -7309,7 +7461,7 @@ function backToIndex() {
     history.pushState(null, '', location.pathname);
 }
 
-function renderAll(c) {
+function renderAll(c, composerKey) {
     const flow = document.getElementById('timeline-flow');
     const listBody = document.getElementById('works-body');
     if (!flow || !listBody) return;
@@ -7350,7 +7502,7 @@ function renderAll(c) {
                     titleEnHtml +
                     '<div class="desc">' + ev.desc + '</div>' +
                     '<button class="analyze-btn" onclick="analyzeEvent(\'' + safeTitle + '\', \'' + ev.type + '\')">&#x2728; \u89E3\u8AAC</button>' +
-                    (ev.type === 'work' ? '<a class="apple-music-btn" href="' + buildAppleMusicUrl(c.name, ev.title_en || ev.title) + '" target="_blank" rel="noopener">&#x266B; Apple Music</a>' : '') +
+                    (ev.type === 'work' ? '<a class="apple-music-btn" href="' + buildAppleMusicUrl(c.name, ev.title_en || ev.title) + '" target="_blank" rel="noopener">&#x266B; Apple Music</a>' + getSupraHtml(composerKey, ev.opus, false) : '') +
                 '</div>' +
             '</div>';
         flow.appendChild(item);
@@ -7369,6 +7521,7 @@ function renderAll(c) {
                     '<div class="col-action-inner">' +
                     '<button class="analyze-btn" onclick="analyzeEvent(\'' + safeTitle + '\', \'work\')">&#x2728; \u89E3\u8AAC</button>' +
                     '<a class="apple-music-btn" href="' + buildAppleMusicUrl(c.name, ev.title_en || ev.title) + '" target="_blank" rel="noopener">&#x266B;</a>' +
+                    getSupraHtml(composerKey, ev.opus, true) +
                     '</div>' +
                 '</td>';
             listBody.appendChild(tr);
