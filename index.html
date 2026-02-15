@@ -86,6 +86,9 @@
         .apple-music-btn { display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; margin-left: 6px; padding: 6px 14px; font-size: 0.72rem; white-space: nowrap; background: linear-gradient(135deg, #fc3c44, #e02a34); border: none; border-radius: 18px; cursor: pointer; color: #fff; font-family: 'Noto Serif JP', serif; font-weight: bold; transition: all 0.2s; -webkit-tap-highlight-color: transparent; text-decoration: none; }
         .apple-music-btn:hover { background: linear-gradient(135deg, #e02a34, #c91f29); box-shadow: 0 2px 8px rgba(252,60,68,0.3); }
         .apple-music-btn:active { transform: scale(0.96); }
+        .classical-btn { display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; margin-left: 6px; padding: 6px 14px; font-size: 0.72rem; white-space: nowrap; background: linear-gradient(135deg, #1a1a2e, #16213e); border: none; border-radius: 18px; cursor: pointer; color: #fff; font-family: 'Noto Serif JP', serif; font-weight: bold; transition: all 0.2s; -webkit-tap-highlight-color: transparent; text-decoration: none; }
+        .classical-btn:hover { background: linear-gradient(135deg, #16213e, #0f3460); box-shadow: 0 2px 8px rgba(22,33,62,0.3); }
+        .classical-btn:active { transform: scale(0.96); }
         .supra-btn { display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; margin-left: 6px; padding: 6px 14px; font-size: 0.72rem; white-space: nowrap; background: linear-gradient(135deg, #D4A76A, #B8860B); border: none; border-radius: 18px; cursor: pointer; color: #fff; font-family: 'Noto Serif JP', serif; font-weight: bold; transition: all 0.2s; -webkit-tap-highlight-color: transparent; text-decoration: none; }
         .supra-btn:hover { background: linear-gradient(135deg, #B8860B, #8B6914); box-shadow: 0 2px 8px rgba(184,134,11,0.3); }
         .supra-btn:active { transform: scale(0.96); }
@@ -180,7 +183,7 @@
         @media (min-width: 769px) and (max-width: 1024px) { .timeline-content-wrapper { padding: 0 24px; } .event-card { padding: 12px 14px; } }
         @media (min-width: 1025px) { .timeline-content-wrapper { padding: 0 40px; } }
         @media (max-width: 380px) { .header-controls { gap: 6px; } .switch-btn { padding: 6px 12px; } .timeline-item { padding-left: 30px !important; } #timeline-line { left: 12px; } .timeline-dot { left: 12px; } .year-row { padding-left: 30px; } }
-        @media print { header { position: static; box-shadow: none; } .analyze-btn, .apple-music-btn, .supra-btn, #chat-widget, .settings-btn, .back-btn { display: none; } .event-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; } }
+        @media print { header { position: static; box-shadow: none; } .analyze-btn, .apple-music-btn, .classical-btn, .supra-btn, #chat-widget, .settings-btn, .back-btn { display: none; } .event-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; } }
     </style>
 </head>
 <body>
@@ -7387,6 +7390,10 @@ let currentComposer = null;
 
 function buildAppleMusicUrl(composerName, title) {
     var q = composerName + ' ' + title;
+    return 'https://music.apple.com/search?term=' + encodeURIComponent(q);
+}
+function buildClassicalUrl(composerName, title) {
+    var q = composerName + ' ' + title;
     return 'https://classical.music.apple.com/jp/search?term=' + encodeURIComponent(q);
 }
 
@@ -7516,7 +7523,7 @@ function renderAll(c, composerKey) {
                     titleEnHtml +
                     '<div class="desc">' + ev.desc + '</div>' +
                     '<button class="analyze-btn" onclick="analyzeEvent(\'' + safeTitle + '\', \'' + ev.type + '\')">&#x2728; \u89E3\u8AAC</button>' +
-                    (ev.type === 'work' ? '<a class="apple-music-btn" href="' + buildAppleMusicUrl(c.name, ev.title_en || ev.title) + '" target="_blank" rel="noopener">&#x266B; Apple Music Classical</a>' + getSupraHtml(composerKey, ev.opus, false) : '') +
+                    (ev.type === 'work' ? '<a class="apple-music-btn" href="' + buildAppleMusicUrl(c.name, ev.title_en || ev.title) + '" target="_blank" rel="noopener">&#x266B; Apple Music</a><a class="classical-btn" href="' + buildClassicalUrl(c.name, ev.title_en || ev.title) + '" target="_blank" rel="noopener">&#x266B; Classical</a>' + getSupraHtml(composerKey, ev.opus, false) : '') +
                 '</div>' +
             '</div>';
         flow.appendChild(item);
@@ -7534,7 +7541,8 @@ function renderAll(c, composerKey) {
                 '<td class="col-action">' +
                     '<div class="col-action-inner">' +
                     '<button class="analyze-btn" onclick="analyzeEvent(\'' + safeTitle + '\', \'work\')">&#x2728; \u89E3\u8AAC</button>' +
-                    '<a class="apple-music-btn" href="' + buildAppleMusicUrl(c.name, ev.title_en || ev.title) + '" target="_blank" rel="noopener">&#x266B;</a>' +
+                    '<a class="apple-music-btn" href="' + buildAppleMusicUrl(c.name, ev.title_en || ev.title) + '" target="_blank" rel="noopener">&#x266B; Apple Music</a>' +
+                    '<a class="classical-btn" href="' + buildClassicalUrl(c.name, ev.title_en || ev.title) + '" target="_blank" rel="noopener">&#x266B; Classical</a>' +
                     getSupraHtml(composerKey, ev.opus, true) +
                     '</div>' +
                 '</td>';
