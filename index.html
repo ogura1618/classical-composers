@@ -76,6 +76,9 @@
         .meta { font-size: clamp(0.6rem, 1.8vw, 0.7rem); color: #777; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; font-family: 'Cinzel', serif; flex-wrap: wrap; }
         .age-badge { background: #f0ede8; padding: 1px 6px; border-radius: 4px; font-weight: bold; color: #333; white-space: nowrap; font-size: 0.65rem; border: 1px solid #ddd; }
         .opus-tag { font-size: 0.72rem; color: #c94c4c; font-weight: bold; margin-bottom: 2px; display: block; }
+        .opus-tag[data-catalog-tip] { cursor: help; text-decoration: underline dotted #c94c4c; text-underline-offset: 2px; position: relative; }
+        .opus-tag[data-catalog-tip]::after { content: attr(data-catalog-tip); position: absolute; left: 0; bottom: 100%; margin-bottom: 6px; background: #2c241b; color: #fff; font-size: 0.68rem; font-weight: normal; padding: 5px 10px; border-radius: 6px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 100; }
+        .opus-tag[data-catalog-tip]:hover::after, .opus-tag[data-catalog-tip]:focus::after { opacity: 1; }
         .genre-tag { font-size: 0.65rem; color: #fff; background: #8b7355; padding: 1px 7px; border-radius: 10px; white-space: nowrap; }
         h3 { font-size: clamp(0.85rem, 2.5vw, 0.95rem); margin-bottom: 2px; font-weight: 700; line-height: 1.3; color: #111; }
         .title-en { font-size: clamp(0.65rem, 1.8vw, 0.72rem); color: #888; display: block; margin-bottom: 6px; line-height: 1.3; font-style: italic; }
@@ -130,6 +133,14 @@
 
         #settings-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 5000; justify-content: center; align-items: center; padding: 16px; }
         #settings-modal.show { display: flex; }
+        #catalog-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 5000; justify-content: center; align-items: center; padding: 16px; }
+        #catalog-modal.show { display: flex; }
+        #catalog-modal .settings-content { max-width: 520px; max-height: 80vh; overflow-y: auto; }
+        .catalog-entry { display: flex; flex-direction: column; padding: 10px 0; border-bottom: 1px solid #eee; }
+        .catalog-entry:last-child { border-bottom: none; }
+        .catalog-prefix { font-family: 'Cinzel', serif; font-weight: bold; color: #c94c4c; font-size: 0.9rem; }
+        .catalog-full { font-size: 0.82rem; color: #444; font-style: italic; }
+        .catalog-ja { font-size: 0.78rem; color: #888; }
         .settings-content { background: #fff; padding: 28px 24px; border-radius: 16px; max-width: 440px; width: 100%; position: relative; box-shadow: 0 12px 40px rgba(0,0,0,0.2); }
         .settings-content h2 { font-size: 1rem; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #8b7355; }
         .settings-content label { display: block; font-size: 0.82rem; font-weight: bold; color: #444; margin-bottom: 6px; }
@@ -143,6 +154,7 @@
         .toast.show { opacity: 1; }
 
         @media (max-width: 768px) {
+            .opus-tag[data-catalog-tip]::after { left: auto; right: 0; white-space: normal; max-width: 220px; }
             #detail-view header { padding: 12px 10px 14px; }
             #timeline-line { left: 16px; transform: none; }
             .year-row { justify-content: flex-start; padding-left: 36px; margin: 30px 0 10px; }
@@ -360,6 +372,7 @@
             <button id="btn-timeline" class="switch-btn active" onclick="switchView('timeline')">年表</button>
             <button id="btn-list" class="switch-btn" onclick="switchView('list')">作品リスト</button>
         </div>
+        <button class="settings-btn" onclick="openCatalogInfo()" title="作品番号について">&#x2139;</button>
         <button class="settings-btn" onclick="openSettings()" title="API設定">&#x2699;</button>
     </div>
 </header>
@@ -426,9 +439,53 @@
     </div>
 </div>
 
+<div id="catalog-modal" onclick="closeCatalogInfo(event)">
+    <div class="settings-content" onclick="event.stopPropagation()">
+        <span class="close-modal" onclick="closeCatalogInfoDirect()">&#xd7;</span>
+        <h2>作品番号（カタログ番号）について</h2>
+        <div id="catalog-list"></div>
+    </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
+
+const CATALOG_INFO = {
+    'Op.':  { full: 'Opus', ja: '作品番号' },
+    'WoO':  { full: 'Werke ohne Opuszahl', ja: '作品番号なしの作品' },
+    'Hess': { full: 'Hess-Verzeichnis', ja: 'ヘス番号（ベートーヴェン補遺目録）' },
+    'Anh.': { full: 'Anhang', ja: '補遺（疑作・編曲等）' },
+    'BWV':  { full: 'Bach-Werke-Verzeichnis', ja: 'バッハ作品目録' },
+    'K.':   { full: 'Köchel-Verzeichnis', ja: 'ケッヘル番号（モーツァルト作品目録）' },
+    'D.':   { full: 'Deutsch-Verzeichnis', ja: 'ドイチュ番号（シューベルト作品目録）' },
+    'Hob.': { full: 'Hoboken-Verzeichnis', ja: 'ホーボーケン番号（ハイドン作品目録）' },
+    'RV':   { full: 'Ryom-Verzeichnis', ja: 'リオム番号（ヴィヴァルディ作品目録）' },
+    'HWV':  { full: 'Händel-Werke-Verzeichnis', ja: 'ヘンデル作品目録' },
+    'S.':   { full: 'Searle number', ja: 'サール番号（リスト作品目録）' },
+    'WWV':  { full: 'Wagner-Werk-Verzeichnis', ja: 'ワーグナー作品目録' },
+    'TrV':  { full: 'Trenner-Verzeichnis', ja: 'トレンナー番号（R.シュトラウス作品目録）' },
+    'MWV':  { full: 'Mendelssohn-Werk-Verzeichnis', ja: 'メンデルスゾーン作品目録' },
+    'JS':   { full: 'Jääskeläinen–Sibelius', ja: 'シベリウス作品目録' },
+    'B.':   { full: 'Burghauser catalogue', ja: 'ブルクハウザー番号（ドヴォルザーク作品目録）' },
+    'EG':   { full: 'Edvard Grieg catalogue', ja: 'グリーグ作品目録' }
+};
+const CATALOG_PREFIXES = Object.keys(CATALOG_INFO).sort((a, b) => b.length - a.length);
+
+function getCatalogPrefix(opus) {
+    if (!opus) return null;
+    for (const prefix of CATALOG_PREFIXES) {
+        if (opus.startsWith(prefix) || opus.startsWith(prefix.replace('.', ''))) return prefix;
+    }
+    return null;
+}
+
+function catalogTipAttr(opus) {
+    const prefix = getCatalogPrefix(opus);
+    if (!prefix) return '';
+    const info = CATALOG_INFO[prefix];
+    return ' data-catalog-tip="' + info.full + '（' + info.ja + '）" tabindex="0"';
+}
 
 const COMPOSERS = {
     "vivaldi": {
@@ -9809,7 +9866,7 @@ function renderAll(c, composerKey) {
         if (ev.month && ev.month < 6) age--;
         if (age < 0) age = 0;
 
-        const opusHtml = ev.opus ? '<span class="opus-tag">' + ev.opus + '</span>' : '';
+        const opusHtml = ev.opus ? '<span class="opus-tag"' + catalogTipAttr(ev.opus) + '>' + ev.opus + '</span>' : '';
         const titleEnHtml = ev.title_en ? '<span class="title-en">' + ev.title_en + '</span>' : '';
         const safeTitle = ev.title.replace(/'/g, "\\'").replace(/"/g, '&quot;');
 
@@ -9835,7 +9892,7 @@ function renderAll(c, composerKey) {
                 '<td class="col-date">' + ev.year + '\u5E74</td>' +
                 '<td class="col-age"><span class="age-badge">' + age + '\u6B73</span></td>' +
                 '<td>' +
-                    '<div style="font-size:0.72rem; color:#c94c4c; font-weight:bold;">' + (ev.opus || '') + '</div>' +
+                    '<span class="opus-tag"' + catalogTipAttr(ev.opus) + '>' + (ev.opus || '') + '</span>' +
                     '<div style="font-weight:bold; font-size:0.92rem;">' + ev.title + '</div>' +
                     '<div style="font-size:0.72rem; color:#888; margin-top:2px;">' + (ev.title_en || '') + '</div>' +
                 '</td>' +
@@ -9918,6 +9975,23 @@ function openSettings() {
 }
 function closeSettings(e) { if (e.target === document.getElementById('settings-modal')) closeSettingsDirect(); }
 function closeSettingsDirect() { document.getElementById('settings-modal').classList.remove('show'); }
+
+function openCatalogInfo() {
+    let html = '';
+    for (const prefix of Object.keys(CATALOG_INFO)) {
+        const info = CATALOG_INFO[prefix];
+        html += '<div class="catalog-entry">' +
+            '<span class="catalog-prefix">' + prefix + '</span>' +
+            '<span class="catalog-full">' + info.full + '</span>' +
+            '<span class="catalog-ja">' + info.ja + '</span>' +
+            '</div>';
+    }
+    document.getElementById('catalog-list').innerHTML = html;
+    document.getElementById('catalog-modal').classList.add('show');
+}
+function closeCatalogInfo(e) { if (e.target === document.getElementById('catalog-modal')) closeCatalogInfoDirect(); }
+function closeCatalogInfoDirect() { document.getElementById('catalog-modal').classList.remove('show'); }
+
 function saveSettings() {
     const key = document.getElementById('api-key-input').value.trim();
     if (key) localStorage.setItem('composer_groq_key', key);
