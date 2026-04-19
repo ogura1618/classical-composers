@@ -204,7 +204,7 @@
 <div id="index-view">
 <header>
     <h1>Classical Composers</h1>
-    <p class="subtitle">クラシック作曲家 生涯と作品 全26人</p>
+    <p class="subtitle">クラシック作曲家 生涯と作品 全27人</p>
 </header>
 <main id="index-main">
     <div class="era-section">
@@ -285,6 +285,11 @@
                 <div class="composer-info"><div class="composer-ja">ヴェルディ</div><div class="composer-en">Giuseppe Verdi</div></div>
                 <div class="composer-arrow">&#x203A;</div>
             </a>
+            <a class="composer-card" href="#" onclick="showComposer('bruckner'); return false;">
+                <div class="composer-years">1824 - 1896</div>
+                <div class="composer-info"><div class="composer-ja">ブルックナー</div><div class="composer-en">Anton Bruckner</div></div>
+                <div class="composer-arrow">&#x203A;</div>
+            </a>
             <a class="composer-card" href="#" onclick="showComposer('brahms'); return false;">
                 <div class="composer-years">1833 - 1897</div>
                 <div class="composer-info"><div class="composer-ja">ブラームス</div><div class="composer-en">Johannes Brahms</div></div>
@@ -357,7 +362,7 @@
             </a>
         </div>
     </div>
-    <p class="count-badge">全26人の作曲家</p>
+    <p class="count-badge">全27人の作曲家</p>
 </main>
 </div>
 
@@ -5879,6 +5884,49 @@ const COMPOSERS = {
             { year: 1835, month: 0, type: 'work', opus: "", title: "交響曲 ハ長調", title_en: "Symphony in C major", desc: "ヴェルディが学生時代に書いた唯一の交響曲。古典的な4楽章構成の管弦楽作品。" },
             { year: 1838, month: 0, type: 'work', opus: "", title: "人生は苦悩の海", title_en: "È la vita un mar d'affanni", desc: "人生の苦しみを歌った初期の歌曲で、若きヴェルディの劇的な表現力が窺える。" },
         ]
+    },
+    "bruckner": {
+        name: "Anton Bruckner",
+        ja: "ブルックナー",
+        birth: 1824,
+        years: "1824 - 1896",
+        events: [{ year: 1824, month: 9, type: 'life', title: "誕生", desc: "オーストリア・アンスフェルデンで教師の家庭に生まれる。幼少期から教会音楽に親しむ。" },
+        { year: 1835, month: 6, type: 'life', title: "ザンクト・フローリアン修道院", desc: "父の死後、11歳でザンクト・フローリアン修道院の少年聖歌隊員となり、オルガンと音楽理論を学ぶ。" },
+        { year: 1841, month: 6, type: 'life', title: "助教師となる", desc: "師範学校を卒業し、各地の小学校で助教師として働きながら作曲とオルガンの研鑽を積む。" },
+        { year: 1845, month: 9, type: 'life', title: "ザンクト・フローリアン教師", desc: "ザンクト・フローリアン修道院付属学校の教師に着任。オルガン演奏の腕前が認められる。" },
+        { year: 1848, month: 6, type: 'life', title: "修道院オルガニスト", desc: "ザンクト・フローリアン修道院の仮オルガニストに就任し、本格的にオルガニストとしての道を歩み始める。" },
+        { year: 1855, month: 6, type: 'life', title: "ジーモン・ゼヒターに師事", desc: "ウィーンの著名な音楽理論家ジーモン・ゼヒターに和声法と対位法を学び始め、6年間にわたる厳格な理論学習を行う。" },
+        { year: 1856, month: 6, type: 'life', title: "リンツ大聖堂オルガニスト", desc: "リンツ大聖堂の主任オルガニストに就任。この地位を13年間務める。" },
+        { year: 1861, month: 7, type: 'life', title: "ゼヒターの下での学習修了", desc: "ゼヒターの下での理論学習を修了。続いてオットー・キッツラーに管弦楽法を学ぶ。" },
+        { year: 1863, month: 6, type: 'life', title: "ワーグナーとの出会い", desc: "ワーグナーの《タンホイザー》に深い感銘を受け、後にワーグナーと面会。その音楽に終生にわたる影響を受ける。" },
+        { year: 1868, month: 10, type: 'life', title: "ウィーン音楽院教授", desc: "ウィーン音楽院の和声法・対位法の教授に就任し、ウィーンに移住。以後ウィーンを拠点とする。" },
+        { year: 1869, month: 5, type: 'life', title: "フランスでのオルガン演奏", desc: "ナンシーとパリでオルガン演奏会を行い、高い評価を得る。ノートルダム大聖堂でも演奏。" },
+        { year: 1871, month: 8, type: 'life', title: "ロンドンでのオルガン演奏", desc: "ロイヤル・アルバート・ホールとクリスタル・パレスでオルガン演奏会を行い、大成功を収める。" },
+        { year: 1875, month: 6, type: 'life', title: "ウィーン大学講師", desc: "ウィーン大学の和声法・対位法の非常勤講師に就任。" },
+        { year: 1881, month: 2, type: 'life', title: "交響曲第4番初演", desc: "ハンス・リヒター指揮ウィーン・フィルにより交響曲第4番が初演され、好評を博す。" },
+        { year: 1884, month: 12, type: 'life', title: "交響曲第7番初演・躍進", desc: "アルトゥール・ニキシュ指揮によりライプツィヒで交響曲第7番が初演され、大成功。国際的名声を得る転機となる。" },
+        { year: 1886, month: 7, type: 'life', title: "フランツ・ヨーゼフ勲章", desc: "皇帝フランツ・ヨーゼフ1世よりフランツ・ヨーゼフ勲章を授与される。" },
+        { year: 1891, month: 11, type: 'life', title: "名誉博士号", desc: "ウィーン大学より名誉博士号を授与される。ブルックナー自身が最も喜んだ栄誉とされる。" },
+        { year: 1892, month: 12, type: 'life', title: "交響曲第8番初演", desc: "ハンス・リヒター指揮ウィーン・フィルにより交響曲第8番が初演され、大成功を収める。" },
+        { year: 1896, month: 10, type: 'life', title: "死去", desc: "ウィーンで死去。享年72歳。遺言によりザンクト・フローリアン修道院の大オルガンの下に埋葬される。交響曲第9番は未完のまま残された。" },
+        { year: 1849, month: 6, type: 'work', opus: "", title: "レクイエム ニ短調", title_en: "Requiem in D minor", desc: "ブルックナー最初期の重要な宗教作品。伝統的な様式で書かれた。" },
+        { year: 1864, month: 9, type: 'work', opus: "", title: "ミサ曲第1番 ニ短調", title_en: "Mass No. 1 in D minor", desc: "3つの大ミサ曲の最初の作品。オーケストラ伴奏を伴う壮大な宗教音楽。" },
+        { year: 1866, month: 6, type: 'work', opus: "", title: "交響曲第1番 ハ短調", title_en: "Symphony No. 1 in C minor", desc: "ブルックナー自ら「生意気な嬢ちゃん」と呼んだ、意欲的で大胆な初期の交響曲。" },
+        { year: 1866, month: 9, type: 'work', opus: "", title: "ミサ曲第2番 ホ短調", title_en: "Mass No. 2 in E minor", desc: "管楽器と合唱のみで書かれた、パレストリーナ様式の影響を受けた独自の宗教作品。" },
+        { year: 1868, month: 9, type: 'work', opus: "", title: "ミサ曲第3番 ヘ短調 「大ミサ」", title_en: "Mass No. 3 in F minor (\"Great\")", desc: "3つの大ミサ曲の最高傑作とされ、交響曲的な規模とドラマを持つ壮大な作品。" },
+        { year: 1869, month: 6, type: 'work', opus: "", title: "交響曲第0番 ニ短調", title_en: "Symphony No. 0 in D minor", desc: "ブルックナー自身が番号を与えず「第0番」として知られる初期の交響曲。" },
+        { year: 1872, month: 6, type: 'work', opus: "", title: "交響曲第2番 ハ短調", title_en: "Symphony No. 2 in C minor", desc: "「休止の交響曲」とも呼ばれ、全般的休止を効果的に用いた作品。" },
+        { year: 1873, month: 12, type: 'work', opus: "", title: "交響曲第3番 ニ短調 「ワーグナー」", title_en: "Symphony No. 3 in D minor (\"Wagner\")", desc: "ワーグナーに献呈され、その音楽からの引用を含む。ブルックナーのワーグナーへの敬愛を示す作品。" },
+        { year: 1874, month: 11, type: 'work', opus: "", title: "交響曲第4番 変ホ長調 「ロマンティック」", title_en: "Symphony No. 4 in E-flat major (\"Romantic\")", desc: "ブルックナーの交響曲の中で最も親しまれている作品。中世の城や自然の情景を喚起する。" },
+        { year: 1876, month: 6, type: 'work', opus: "", title: "交響曲第5番 変ロ長調", title_en: "Symphony No. 5 in B-flat major", desc: "対位法の巨大な建築物とも評される、壮大なフーガを持つ交響曲。ブルックナーは生前一度も演奏を聴けなかった。" },
+        { year: 1879, month: 9, type: 'work', opus: "", title: "弦楽五重奏曲 ヘ長調", title_en: "String Quintet in F major", desc: "ブルックナー唯一の弦楽五重奏曲。アダージョ楽章が特に有名で、深い抒情性を持つ。" },
+        { year: 1881, month: 9, type: 'work', opus: "", title: "交響曲第6番 イ長調", title_en: "Symphony No. 6 in A major", desc: "「最も大胆な」交響曲と作曲者自身が述べた、リズムの独創性に富む作品。" },
+        { year: 1883, month: 9, type: 'work', opus: "", title: "交響曲第7番 ホ長調", title_en: "Symphony No. 7 in E major", desc: "ワーグナーの死を悼むアダージョを含む、ブルックナーに国際的名声をもたらした傑作。" },
+        { year: 1884, month: 6, type: 'work', opus: "", title: "テ・デウム", title_en: "Te Deum", desc: "合唱、独唱、管弦楽のための壮大な宗教作品。ブルックナーが最も誇りにした作品の一つ。" },
+        { year: 1887, month: 6, type: 'work', opus: "", title: "交響曲第8番 ハ短調", title_en: "Symphony No. 8 in C minor", desc: "ブルックナー交響曲の最高傑作の一つとされ、壮大なスケールと深遠な精神性を持つ。" },
+        { year: 1892, month: 6, type: 'work', opus: "", title: "詩篇第150篇", title_en: "Psalm 150", desc: "合唱と管弦楽のための壮大な宗教作品。ブルックナー晩年の充実した筆致による。" },
+        { year: 1893, month: 6, type: 'work', opus: "", title: "ヘルゴラント", title_en: "Helgoland", desc: "男声合唱と管弦楽のための作品。ブルックナー最後の完成された作品の一つ。" },
+        { year: 1896, month: 6, type: 'work', opus: "", title: "交響曲第9番 ニ短調 (未完)", title_en: "Symphony No. 9 in D minor (unfinished)", desc: "「愛する神に」捧げられた最後の交響曲。第3楽章アダージョまでが完成し、終楽章は未完のまま残された。" }]
     },
     "brahms": {
         name: "Johannes Brahms",
