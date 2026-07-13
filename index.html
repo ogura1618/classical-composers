@@ -295,6 +295,11 @@
                 <div class="composer-info"><div class="composer-ja">ブラームス</div><div class="composer-en">Johannes Brahms</div></div>
                 <div class="composer-arrow">&#x203A;</div>
             </a>
+            <a class="composer-card" href="#" onclick="showComposer('bruch'); return false;">
+                <div class="composer-years">1838 - 1920</div>
+                <div class="composer-info"><div class="composer-ja">ブルッフ</div><div class="composer-en">Max Bruch</div></div>
+                <div class="composer-arrow">&#x203A;</div>
+            </a>
             <a class="composer-card" href="#" onclick="showComposer('tchaikovsky'); return false;">
                 <div class="composer-years">1840 - 1893</div>
                 <div class="composer-info"><div class="composer-ja">チャイコフスキー</div><div class="composer-en">Pyotr Ilyich Tchaikovsky</div></div>
@@ -6265,6 +6270,48 @@ const COMPOSERS = {
             { year: 1874, month: 0, type: 'work', opus: "WoO 23", title: "歌曲「恋人のもとへ行く小道」", title_en: "Der Gang zum Liebchen", desc: "ボヘミアの民謡詩による素朴な歌曲。" },
             { year: 1896, month: 0, type: 'work', opus: "Op. 121", title: "4つの厳粛な歌", title_en: "Four Serious Songs", desc: "聖書のテキストによるバス独唱とピアノのための深遠な最後の歌曲集で、人生と死を見つめた遺言的作品。" },
             { year: 1896, month: 0, type: 'work', opus: "Op. 122", title: "11のコラール前奏曲", title_en: "Choral Preludes, Op. 122", desc: "ブラームスの絶筆となったオルガンのためのコラール前奏曲集で、最後の「おお世よ、われ汝を去らねばならぬ」は死を予感した感動的な作品。" },
+        ]
+    },
+    "bruch": {
+        name: "Max Bruch",
+        ja: "ブルッフ",
+        birth: 1838,
+        years: "1838 - 1920",
+        events: [
+            { year: 1838, month: 1, type: 'life', title: "誕生", desc: "ケルンで弁護士の父アウグストと声楽家の母ヴィルヘルミーネの間に生まれる。" },
+            { year: 1849, month: 6, type: 'life', title: "音楽の学習開始", desc: "ボンでハインリヒ・カール・ブライデンシュタインに音楽理論を学び始め、後にフェルディナント・ヒラーに師事する。ピアニスト・作曲家イグナーツ・モシェレスにも才能を見出された。" },
+            { year: 1858, month: 6, type: 'life', title: "初のオペラ初演", desc: "最初のオペラ《冗談、策略、復讐》がケルンで初演される。" },
+            { year: 1862, month: 6, type: 'life', title: "マンハイム音楽監督", desc: "マンハイムで音楽監督を務め、指揮者としてのキャリアを本格化させる。" },
+            { year: 1864, month: 11, type: 'life', title: "《フリートヨフ》初演で成功", desc: "8年がかりで作曲した男声合唱曲《フリートヨフ Op.23》がアーヘンで初演され大成功を収め、国内での名声を確立する。" },
+            { year: 1865, month: 6, type: 'life', title: "コブレンツ宮廷楽長", desc: "コブレンツの宮廷楽長に就任し、以後複数の都市で楽長・指揮者を歴任する。" },
+            { year: 1868, month: 1, type: 'life', title: "ヴァイオリン協奏曲第1番 改訂版初演", desc: "ヨーゼフ・ヨアヒムの助言を得て改訂した協奏曲第1番の決定版が、ヨアヒムの独奏によりブレーメンで初演され大成功を収める。" },
+            { year: 1867, month: 6, type: 'life', title: "ゾンダースハウゼン宮廷楽長", desc: "ゾンダースハウゼンの宮廷楽長に就任する（1870年まで）。" },
+            { year: 1873, month: 6, type: 'life', title: "ボンでフリーの作曲家に", desc: "以後1878年までボンを拠点にフリーの作曲家として活動する。" },
+            { year: 1880, month: 6, type: 'life', title: "リヴァプール・フィル首席指揮者", desc: "リヴァプール・フィルハーモニー協会の首席指揮者に就任する（1883年まで）。" },
+            { year: 1881, month: 1, type: 'life', title: "クララ・トゥチェクと結婚", desc: "声楽家クララ・トゥチェクと結婚する。" },
+            { year: 1883, month: 6, type: 'life', title: "ブレスラウ音楽協会指揮者", desc: "ブレスラウ（現ヴロツワフ）の音楽協会オルヒェスターフェアアインの指揮者に就任する（1890年まで）。" },
+            { year: 1890, month: 6, type: 'life', title: "ベルリン・ホッホシューレ教授", desc: "ベルリンの王立音楽アカデミー（ホッホシューレ）で作曲科教授兼マスタークラス主宰者に就任する。教え子にオットリーノ・レスピーギらがいる。1910年に引退。" },
+            { year: 1891, month: 6, type: 'life', title: "ケンブリッジ大学名誉博士号", desc: "ケンブリッジ大学より名誉博士号を授与される。" },
+            { year: 1908, month: 6, type: 'life', title: "プール・ル・メリット勲章", desc: "「科学と芸術のためのプール・ル・メリット勲章」の会員に選出される。" },
+            { year: 1919, month: 8, type: 'life', title: "妻クララ死去", desc: "長年連れ添った妻クララが死去する。" },
+            { year: 1920, month: 10, type: 'life', title: "死去", desc: "ベルリン=フリーデナウの自宅で死去。享年82歳。妻クララの隣に埋葬された。" },
+            { year: 1864, month: 11, type: 'work', opus: "Op. 23", title: "フリートヨフ", title_en: "Frithjof", desc: "テーゲネルの叙事詩に基づく男声合唱と独唱・管弦楽のための作品。アーヘンでの初演で大成功を収め、ブルッフの合唱作曲家としての名声を確立した。" },
+            { year: 1866, month: 4, type: 'work', opus: "Op. 26", title: "ヴァイオリン協奏曲第1番 ト短調", title_en: "Violin Concerto No. 1 in G minor", desc: "ブルッフの代表作かつヴァイオリン協奏曲の定番レパートリー。ヨアヒムの助言により改訂され、彼に献呈された、情熱的で叙情的な旋律美が際立つ作品。" },
+            { year: 1867, month: 6, type: 'work', opus: "Op. 24", title: "美しいエレン", title_en: "Fair Ellen (Schön Ellen)", desc: "エマヌエル・ガイベルの詩に基づく合唱作品。1857年インド・ラクナウ包囲戦を題材にした劇的な物語を音楽化している。" },
+            { year: 1868, month: 6, type: 'work', opus: "Op. 28", title: "交響曲第1番 変ホ長調", title_en: "Symphony No. 1 in E-flat major", desc: "ゾンダースハウゼン時代に作曲された最初の交響曲。ブラームスに献呈され、伝統的な古典的形式を踏まえた重厚な作品。" },
+            { year: 1870, month: 6, type: 'work', opus: "Op. 36", title: "交響曲第2番 ヘ短調", title_en: "Symphony No. 2 in F minor", desc: "短調による陰影深い性格を持つ交響曲で、3楽章構成という当時としては異例の構成を取る。" },
+            { year: 1872, month: 6, type: 'work', opus: "Op. 41", title: "オデュッセウス", title_en: "Odysseus", desc: "ホメロスの叙事詩に基づく合唱と管弦楽のための大作。当時は合唱作曲家としてのブルッフの代表作の一つとみなされた。" },
+            { year: 1877, month: 11, type: 'work', opus: "Op. 44", title: "ヴァイオリン協奏曲第2番 ニ短調", title_en: "Violin Concerto No. 2 in D minor", desc: "パブロ・デ・サラサーテに献呈・初演された作品。幻想的な緩徐楽章で開始する自由な形式が特徴。" },
+            { year: 1878, month: 5, type: 'work', opus: "Op. 45", title: "鐘の歌", title_en: "Das Lied von der Glocke", desc: "シラーの長編詩に基づく独唱・合唱・管弦楽のためのオラトリオ的大作。ケルンで初演され、ブルッフの合唱作品の中でも特に高く評価された。" },
+            { year: 1880, month: 2, type: 'work', opus: "Op. 46", title: "スコットランド幻想曲", title_en: "Scottish Fantasy", desc: "スコットランド民謡の旋律を主題にした独奏ヴァイオリンと管弦楽（ハープ助奏付き）のための幻想曲。ヴァイオリン協奏曲第1番と並ぶ人気作。" },
+            { year: 1880, month: 2, type: 'work', opus: "Op. 47", title: "コル・ニドライ", title_en: "Kol Nidrei", desc: "チェロと管弦楽のための「ヘブライの旋律によるアダージョ」。ユダヤ教の祈祷曲の旋律に基づく瞑想的な作品で、プロテスタントであったブルッフ自身がユダヤ系だと誤解される一因ともなった。" },
+            { year: 1885, month: 6, type: 'work', opus: "Op. 50", title: "アキレウス", title_en: "Achilleus", desc: "ホメロスの『イリアス』に基づく合唱・独唱・管弦楽のための大作。ボン音楽祭で初演され、長大さにもかかわらず好評を博した。" },
+            { year: 1887, month: 6, type: 'work', opus: "Op. 51", title: "交響曲第3番 ホ長調", title_en: "Symphony No. 3 in E major", desc: "3曲の交響曲中もっとも明るく祝祭的な性格を持つ作品。" },
+            { year: 1891, month: 6, type: 'work', opus: "Op. 58", title: "ヴァイオリン協奏曲第3番 ニ短調", title_en: "Violin Concerto No. 3 in D minor", desc: "パブロ・デ・サラサーテのために書かれ、前2曲より古典的な均整の取れた形式に回帰した作品。" },
+            { year: 1911, month: 6, type: 'work', opus: "Op. 88", title: "クラリネットとヴィオラのための二重協奏曲 ホ短調", title_en: "Concerto for Clarinet, Viola and Orchestra in E minor", desc: "クラリネット奏者の息子マックス・フェリックスとヴィオラ奏者ヴィリー・ヘスのために書かれた晩年の作品。全楽章にスウェーデン民謡が用いられている。" },
+            { year: 1912, month: 6, type: 'work', opus: "Op. 88a", title: "2台のピアノと管弦楽のための協奏曲 変イ短調", title_en: "Concerto for Two Pianos and Orchestra in A-flat minor", desc: "晩年の作品で、後年2台ピアノ版として広く知られるようになった。" },
+            { year: 1918, month: 6, type: 'work', opus: "", title: "弦楽五重奏曲 イ短調", title_en: "String Quintet in A minor", desc: "最晩年に作曲された室内楽の遺作群の一つ。" },
+            { year: 1920, month: 6, type: 'work', opus: "", title: "弦楽八重奏曲 変ロ長調", title_en: "String Octet in B-flat major", desc: "ブルッフ最後の作品とされる、死の年に完成した室内楽曲。" },
         ]
     },
     "tchaikovsky": {
