@@ -382,6 +382,7 @@
             <button id="btn-timeline" class="switch-btn active" onclick="switchView('timeline')">年表</button>
             <button id="btn-list" class="switch-btn" onclick="switchView('list')">作品リスト</button>
         </div>
+        <button id="btn-wiki" class="back-btn" onclick="openWikipedia()" style="display:none;">解説</button>
         <button class="settings-btn" onclick="openCatalogInfo()" title="作品番号について">&#x2139;</button>
         <button class="settings-btn" onclick="openSettings()" title="API設定">&#x2699;</button>
     </div>
@@ -503,6 +504,7 @@ const COMPOSERS = {
         ja: "ヴィヴァルディ",
         birth: 1678,
         years: "1678 - 1741",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%B3%E3%83%88%E3%83%8B%E3%82%AA%E3%83%BB%E3%83%B4%E3%82%A3%E3%83%B4%E3%82%A1%E3%83%AB%E3%83%87%E3%82%A3",
         events: [
             { year: 1678, month: 3, type: 'life', title: "誕生", desc: "ヴェネツィアでヴァイオリニストの父ジョヴァンニ・バッティスタ・ヴィヴァルディと母カミーラ・カラーリオの長男として生まれる。" },
             { year: 1693, month: 9, type: 'life', title: "剃髪式", desc: "聖職者への道を歩み始め、剃髪式を受ける。幼少期から喘息を患っていたとされる。" },
@@ -1139,6 +1141,7 @@ const COMPOSERS = {
         ja: "バッハ",
         birth: 1685,
         years: "1685 - 1750",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%83%A8%E3%83%8F%E3%83%B3%E3%83%BB%E3%82%BC%E3%83%90%E3%82%B9%E3%83%86%E3%82%A3%E3%82%A2%E3%83%B3%E3%83%BB%E3%83%90%E3%83%83%E3%83%8F",
         events: [
             { year: 1685, month: 3, type: 'life', title: "誕生", desc: "ドイツのアイゼナハで、音楽家の家系に生まれる。父は市音楽隊のトランペット奏者。" },
             { year: 1694, month: 5, type: 'life', title: "母の死", desc: "母エリーザベト・バッハが死去。幼くして母を失う。" },
@@ -1644,6 +1647,7 @@ const COMPOSERS = {
         ja: "ヘンデル",
         birth: 1685,
         years: "1685 - 1759",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%82%B2%E3%82%AA%E3%83%AB%E3%82%AF%E3%83%BB%E3%83%95%E3%83%AA%E3%83%BC%E3%83%89%E3%83%AA%E3%83%92%E3%83%BB%E3%83%98%E3%83%B3%E3%83%87%E3%83%AB",
         events: [
             { year: 1685, month: 2, type: 'life', title: "誕生", desc: "神聖ローマ帝国（現在のドイツ）のハレ・アン・デア・ザーレで、外科医の父と牧師の娘の母の間に生まれる。" },
             { year: 1692, month: 6, type: 'life', title: "音楽教育の開始", desc: "父の反対にもかかわらず、ブランデンブルク＝アンシュバッハ公の宮廷オルガニスト、フリードリヒ・ヴィルヘルム・ツァハウに師事し、オルガン、チェンバロ、ヴァイオリン、オーボエ、作曲を学ぶ。" },
@@ -2007,6 +2011,7 @@ const COMPOSERS = {
         ja: "ハイドン",
         birth: 1732,
         years: "1732 - 1809",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%83%A8%E3%83%BC%E3%82%BC%E3%83%95%E3%83%BB%E3%83%8F%E3%82%A4%E3%83%89%E3%83%B3",
         events: [
             { year: 1732, month: 3, type: 'life', title: "誕生", desc: "オーストリアのローアウに生まれる。" },
             { year: 1740, month: 6, type: 'life', title: "ウィーンへ移住、聖シュテファン大聖堂での教育", desc: "叔父の元で音楽教育を受けるためウィーンへ移住し、聖シュテファン大聖堂の少年聖歌隊員となる。" },
@@ -2570,6 +2575,7 @@ const COMPOSERS = {
         ja: "モーツァルト",
         birth: 1756,
         years: "1756 - 1791",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%83%B4%E3%82%A9%E3%83%AB%E3%83%95%E3%82%AC%E3%83%B3%E3%82%B0%E3%83%BB%E3%82%A2%E3%83%9E%E3%83%87%E3%82%A6%E3%82%B9%E3%83%BB%E3%83%A2%E3%83%BC%E3%83%84%E3%82%A1%E3%83%AB%E3%83%88",
         events: [
             { year: 1756, month: 1, type: 'life', title: "誕生", desc: "ザルツブルクに宮廷作曲家レオポルト・モーツァルトの息子として生まれる。幼少期から音楽の才能を発揮した。" },
             { year: 1762, month: 6, type: 'life', title: "初の演奏旅行", desc: "父レオポルトに連れられ、姉ナンネルと共にミュンヘン、ウィーンなどへ初の演奏旅行に出る。各地で神童として注目を集めた。" },
@@ -2974,6 +2980,7 @@ const COMPOSERS = {
         ja: "ベートーヴェン",
         birth: 1770,
         years: "1770 - 1827",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%83%AB%E3%83%BC%E3%83%88%E3%83%B4%E3%82%A3%E3%83%92%E3%83%BB%E3%83%B4%E3%82%A1%E3%83%B3%E3%83%BB%E3%83%99%E3%83%BC%E3%83%88%E3%83%BC%E3%83%B4%E3%82%A7%E3%83%B3",
         events: [
         /* 1770s - 生涯 */
         { year: 1770, month: 12, type: 'life', title: "誕生", desc: "12月17日に洗礼。ボンのケルン選帝侯宮廷の音楽家の家系に生まれる。" },
@@ -3333,6 +3340,7 @@ const COMPOSERS = {
         ja: "シューベルト",
         birth: 1797,
         years: "1797 - 1828",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%A9%E3%83%B3%E3%83%84%E3%83%BB%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%99%E3%83%AB%E3%83%88",
         events: [
             { year: 1797, month: 1, type: 'life', title: "誕生", desc: "ウィーン郊外のリヒテンタールで、学校教師の父フランツ・テオドールと母エリーザベトの間に生まれる。14人兄弟の12番目。" },
             { year: 1808, month: 10, type: 'life', title: "宮廷礼拝堂少年合唱団に入団", desc: "卓越した歌唱力と音楽的才能が認められ、ウィーンの帝国・王立寄宿学校（シュタットコンヴィクト）に給費生として入学。アントニオ・サリエーリに作曲を学ぶ。" },
@@ -4013,6 +4021,7 @@ const COMPOSERS = {
         ja: "メンデルスゾーン",
         birth: 1809,
         years: "1809 - 1847",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A7%E3%83%AA%E3%83%83%E3%82%AF%E3%82%B9%E3%83%BB%E3%83%A1%E3%83%B3%E3%83%87%E3%83%AB%E3%82%B9%E3%82%BE%E3%83%BC%E3%83%B3",
         events: [
             { year: 1809, month: 2, type: 'life', title: "誕生", desc: "ドイツのハンブルクで、裕福なユダヤ系銀行家の家庭に生まれる。祖父は哲学者モーゼス・メンデルスゾーン。" },
             { year: 1811, month: 5, type: 'life', title: "ベルリンへの移住", desc: "家族と共にベルリンに移住。この地で幼少期を過ごし、音楽的才能を開花させる。" },
@@ -4523,6 +4532,7 @@ const COMPOSERS = {
         ja: "ショパン",
         birth: 1810,
         years: "1810 - 1849",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%AC%E3%83%87%E3%83%AA%E3%83%83%E3%82%AF%E3%83%BB%E3%82%B7%E3%83%A7%E3%83%91%E3%83%B3",
         events: [
             { year: 1810, month: 3, type: 'life', title: "誕生", desc: "ポーランドのワルシャワ近郊ジェラゾヴァ・ヴォラで、フランス人の父とポーランド人の母の間に生まれる。" },
             { year: 1817, month: 6, type: 'life', title: "初めての作品出版", desc: "7歳でポロネーズ ト短調を作曲し、出版される。幼少期からその非凡な才能を発揮した。" },
@@ -4870,6 +4880,7 @@ const COMPOSERS = {
         ja: "シューマン",
         birth: 1810,
         years: "1810 - 1856",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%83%AD%E3%83%99%E3%83%AB%E3%83%88%E3%83%BB%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%9E%E3%83%B3",
         events: [
             { year: 1810, month: 6, type: 'life', title: "誕生", desc: "ザクセン王国ツヴィッカウで、書店主・出版業者フリードリヒ・アウグスト・シューマンの末子として生まれる。" },
             { year: 1818, month: 6, type: 'life', title: "ピアノを学ぶ", desc: "地元のオルガニスト、ヨハン・ゴットフリート・クンチュからピアノの手ほどきを受ける。" },
@@ -5228,6 +5239,7 @@ const COMPOSERS = {
         ja: "リスト",
         birth: 1811,
         years: "1811 - 1886",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%A9%E3%83%B3%E3%83%84%E3%83%BB%E3%83%AA%E3%82%B9%E3%83%88",
         events: [
             { year: 1811, month: 10, type: 'life', title: "誕生", desc: "ハンガリー王国ライディング（現オーストリア）に生まれる。父アダムはエステルハージ侯爵家の職員でアマチュア音楽家だった。" },
             { year: 1820, month: 10, type: 'life', title: "初の公開演奏会", desc: "9歳でショプロンとプレスブルク（現ブラチスラヴァ）で初の公開演奏会を行い、その才能が注目される。" },
@@ -5603,6 +5615,7 @@ const COMPOSERS = {
         ja: "ワーグナー",
         birth: 1813,
         years: "1813 - 1883",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%83%AA%E3%83%92%E3%83%A3%E3%83%AB%E3%83%88%E3%83%BB%E3%83%AF%E3%83%BC%E3%82%B0%E3%83%8A%E3%83%BC",
         events: [
             { year: 1813, month: 5, type: 'life', title: "誕生", desc: "ドイツのライプツィヒで、警察官フリードリヒ・ワーグナーとヨハンナ・ロージネの間に9人兄弟の末子として生まれる。" },
             { year: 1827, month: 6, type: 'life', title: "音楽への目覚め", desc: "ベートーヴェンの音楽に深く感銘を受け、作曲家を志す。特に交響曲第7番と第9番に衝撃を受ける。" },
@@ -5750,6 +5763,7 @@ const COMPOSERS = {
         ja: "ヴェルディ",
         birth: 1813,
         years: "1813 - 1901",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A5%E3%82%BC%E3%83%83%E3%83%9A%E3%83%BB%E3%83%B4%E3%82%A7%E3%83%AB%E3%83%87%E3%82%A3",
         events: [
             { year: 1813, month: 10, type: 'life', title: "ヴェルディ誕生", desc: "ロンバルディア州パルマ近郊のレ・ロンコーレで、宿屋兼食料品店主の息子として生まれる。" },
             { year: 1823, month: 6, type: 'life', title: "音楽教育の開始", desc: "ブッセートのギムナジウムで学び、フェルディナンド・プロヴェージにオルガンと作曲を学ぶ。アントニオ・バレッツィの支援を受けるようになる。" },
@@ -5895,6 +5909,7 @@ const COMPOSERS = {
         ja: "ブルックナー",
         birth: 1824,
         years: "1824 - 1896",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%B3%E3%83%88%E3%83%B3%E3%83%BB%E3%83%96%E3%83%AB%E3%83%83%E3%82%AF%E3%83%8A%E3%83%BC",
         events: [{ year: 1824, month: 9, type: 'life', title: "誕生", desc: "オーストリア・アンスフェルデンで教師の家庭に生まれる。幼少期から教会音楽に親しむ。" },
         { year: 1835, month: 6, type: 'life', title: "ザンクト・フローリアン修道院", desc: "父の死後、11歳でザンクト・フローリアン修道院の少年聖歌隊員となり、オルガンと音楽理論を学ぶ。" },
         { year: 1841, month: 6, type: 'life', title: "助教師となる", desc: "師範学校を卒業し、各地の小学校で助教師として働きながら作曲とオルガンの研鑽を積む。" },
@@ -5938,6 +5953,7 @@ const COMPOSERS = {
         ja: "ブラームス",
         birth: 1833,
         years: "1833 - 1897",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%83%A8%E3%83%8F%E3%83%8D%E3%82%B9%E3%83%BB%E3%83%96%E3%83%A9%E3%83%BC%E3%83%A0%E3%82%B9",
         events: [
             { year: 1833, month: 5, type: 'life', title: "誕生", desc: "ハンブルクでコントラバス奏者の父と裁縫師の母の間に生まれる。" },
             { year: 1840, month: 6, type: 'life', title: "ピアノ学習開始", desc: "7歳でオットー・フリードリヒ・ヴィリバルト・コッセルにピアノを習い始める。" },
@@ -6277,6 +6293,7 @@ const COMPOSERS = {
         ja: "ブルッフ",
         birth: 1838,
         years: "1838 - 1920",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%83%9E%E3%83%83%E3%82%AF%E3%82%B9%E3%83%BB%E3%83%96%E3%83%AB%E3%83%83%E3%83%95",
         events: [
             { year: 1838, month: 1, type: 'life', title: "誕生", desc: "ケルンで弁護士の父アウグストと声楽家の母ヴィルヘルミーネの間に生まれる。" },
             { year: 1849, month: 6, type: 'life', title: "音楽の学習開始", desc: "ボンでハインリヒ・カール・ブライデンシュタインに音楽理論を学び始め、後にフェルディナント・ヒラーに師事する。ピアニスト・作曲家イグナーツ・モシェレスにも才能を見出された。" },
@@ -6319,6 +6336,7 @@ const COMPOSERS = {
         ja: "チャイコフスキー",
         birth: 1840,
         years: "1840 - 1893",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%83%94%E3%83%A7%E3%83%BC%E3%83%88%E3%83%AB%E3%83%BB%E3%82%A4%E3%83%AA%E3%82%A4%E3%83%81%E3%83%BB%E3%83%81%E3%83%A3%E3%82%A4%E3%82%B3%E3%83%95%E3%82%B9%E3%82%AD%E3%83%BC",
         events: [
             { year: 1840, month: 5, type: 'life', title: "誕生", desc: "ロシア帝国ヴャトカ県ヴォトキンスクで鉱山技師の父とフランス系ロシア人の母の間に生まれる。" },
             { year: 1850, month: 9, type: 'life', title: "法学校入学", desc: "サンクトペテルブルクの帝国法学校に入学し、法律を学ぶ傍らピアノのレッスンを受ける。" },
@@ -6658,6 +6676,7 @@ const COMPOSERS = {
         ja: "ドヴォルザーク",
         birth: 1841,
         years: "1841 - 1904",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%B3%E3%83%88%E3%83%8B%E3%83%B3%E3%83%BB%E3%83%89%E3%83%B4%E3%82%A9%E3%83%AB%E3%82%B6%E3%83%BC%E3%82%AF",
         events: [
             { year: 1841, month: 9, type: 'life', title: "誕生", desc: "ボヘミアのネラホゼヴェス村で、宿屋兼肉屋の長男として生まれる。" },
             { year: 1853, month: 6, type: 'life', title: "音楽教育の開始", desc: "ツロニツェの叔父の元でドイツ語と音楽を学び始め、オルガン、ヴァイオリン、ヴィオラを習得する。" },
@@ -6993,6 +7012,7 @@ const COMPOSERS = {
         ja: "グリーグ",
         birth: 1843,
         years: "1843 - 1907",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%89%E3%83%B4%E3%82%A1%E3%83%AB%E3%83%89%E3%83%BB%E3%82%B0%E3%83%AA%E3%83%BC%E3%82%B0",
         events: [
             { year: 1843, month: 6, type: 'life', title: "誕生", desc: "ノルウェーのベルゲンで、スコットランド系商人の家系に生まれる。母ゲシーネはピアニストであり、最初の音楽教師となる。" },
             { year: 1858, month: 0, type: 'work', opus: "EG 128", title: "歌曲（初期習作）", title_en: "Songs (Early Studies)", desc: "ライプツィヒ時代に書かれた初期の歌曲習作で、ドイツ・リートの伝統に基づく。" },
@@ -7315,6 +7335,7 @@ const COMPOSERS = {
         ja: "プッチーニ",
         birth: 1858,
         years: "1858 - 1924",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A3%E3%82%B3%E3%83%A2%E3%83%BB%E3%83%97%E3%83%83%E3%83%81%E3%83%BC%E3%83%8B",
         events: [
             { year: 1858, month: 12, type: 'life', title: "誕生", desc: "イタリア、ルッカで代々音楽家の家系に生まれる。父ミケーレも作曲家であった。" },
             { year: 1875, month: 6, type: 'work', opus: "", title: "プレリュード イ短調（オルガン）", title_en: "Preludio in A minor (organ)", desc: "ルッカ時代の初期のオルガン作品。" },
@@ -7427,6 +7448,7 @@ const COMPOSERS = {
         ja: "マーラー",
         birth: 1860,
         years: "1860 - 1911",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%82%B0%E3%82%B9%E3%82%BF%E3%83%95%E3%83%BB%E3%83%9E%E3%83%BC%E3%83%A9%E3%83%BC",
         events: [
             { year: 1860, month: 7, type: 'life', title: "誕生", desc: "ボヘミアのカリシュト（現チェコ、カリシュチェ）に生まれる。" },
             { year: 1875, month: 6, type: 'work', opus: "", title: "前奏曲とフーガ（紛失）", title_en: "Prelude and Fugue (lost)", desc: "ウィーン音楽院入学試験のために作曲されたとされる習作。" },
@@ -7535,6 +7557,7 @@ const COMPOSERS = {
         ja: "ドビュッシー",
         birth: 1862,
         years: "1862 - 1918",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%89%E3%83%BB%E3%83%89%E3%83%93%E3%83%A5%E3%83%83%E3%82%B7%E3%83%BC",
         events: [
             { year: 1862, month: 8, type: 'life', title: "誕生", desc: "パリ近郊サン＝ジェルマン＝アン＝レーで陶器商の長男として生まれる。" },
             { year: 1872, month: 10, type: 'life', title: "パリ音楽院入学", desc: "10歳でパリ音楽院に入学し、ピアノ、和声、作曲などを学ぶ。特に和声学で独自の才能を見せる。" },
@@ -7770,6 +7793,7 @@ const COMPOSERS = {
         ja: "R.シュトラウス",
         birth: 1864,
         years: "1864 - 1949",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%83%AA%E3%83%92%E3%83%A3%E3%83%AB%E3%83%88%E3%83%BB%E3%82%B7%E3%83%A5%E3%83%88%E3%83%A9%E3%82%A6%E3%82%B9",
         events: [
             { year: 1864, month: 6, type: 'life', title: "誕生", desc: "ミュンヘンで、宮廷ホルン奏者フランツ・シュトラウスの息子として生まれる。幼少期から音楽の才能を示す。" },
             { year: 1870, month: 6, type: 'life', title: "作曲開始", desc: "6歳で作曲を始める。父からヴァイオリンとピアノの手ほどきを受け、後に和声と対位法を学ぶ。" },
@@ -8109,6 +8133,7 @@ const COMPOSERS = {
         ja: "シベリウス",
         birth: 1865,
         years: "1865 - 1957",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A3%E3%83%B3%E3%83%BB%E3%82%B7%E3%83%99%E3%83%AA%E3%82%A6%E3%82%B9",
         events: [
             { year: 1865, month: 12, type: 'life', title: "誕生", desc: "フィンランド大公国ハメーンリンナにて、スウェーデン系フィンランド人の家庭に生まれる。本名はヨハン・ユリウス・クリスチャン・シベリウス。" },
             { year: 1885, month: 0, type: 'work', opus: "JS 19", title: "水滴", title_en: "Vattendroppar (Water Drops)", desc: "ヴァイオリンとチェロのための初期の小品で、シベリウスが10代で作曲した習作的作品。" },
@@ -8668,6 +8693,7 @@ const COMPOSERS = {
         ja: "ラフマニノフ",
         birth: 1873,
         years: "1873 - 1943",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%82%BB%E3%83%AB%E3%82%B2%E3%82%A4%E3%83%BB%E3%83%A9%E3%83%95%E3%83%9E%E3%83%8B%E3%83%8E%E3%83%95",
         events: [
             { year: 1873, month: 4, type: 'life', title: "誕生", desc: "ロシアのノヴゴロド近郊、セミョノヴォで裕福な家庭に生まれる。幼少期から音楽の才能を示す。" },
             { year: 1882, month: 9, type: 'life', title: "音楽教育の開始", desc: "サンクトペテルブルク音楽院に入学し、ピアノを学ぶ。後にモスクワ音楽院へ転入する。" },
@@ -8926,6 +8952,7 @@ const COMPOSERS = {
         ja: "ラヴェル",
         birth: 1875,
         years: "1875 - 1937",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%BC%E3%83%AA%E3%82%B9%E3%83%BB%E3%83%A9%E3%83%B4%E3%82%A7%E3%83%AB",
         events: [
             { year: 1875, month: 3, type: 'life', title: "誕生", desc: "フランス南西部シブールで、スイス人の父とバスク人の母の間に生まれる。" },
             { year: 1882, month: 6, type: 'life', title: "ピアノを始める", desc: "7歳でピアノのレッスンを開始し、音楽的才能の片鱗を見せる。" },
@@ -9076,6 +9103,7 @@ const COMPOSERS = {
         ja: "ストラヴィンスキー",
         birth: 1882,
         years: "1882 - 1971",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%82%A4%E3%83%BC%E3%82%B4%E3%83%AA%E3%83%BB%E3%82%B9%E3%83%88%E3%83%A9%E3%83%B4%E3%82%A3%E3%83%B3%E3%82%B9%E3%82%AD%E3%83%BC",
         events: [
             { year: 1882, month: 6, type: 'life', title: "誕生", desc: "ロシア帝国のオラニエンバウム（現ロモノーソフ）で、著名なオペラ歌手フョードル・ストラヴィンスキーの息子として生まれる。" },
             { year: 1890, month: 6, type: 'life', title: "初期の音楽教育", desc: "幼少期からピアノを習い始めるが、両親は音楽家になることを望まず、法律を学ぶよう促される。" },
@@ -9322,6 +9350,7 @@ const COMPOSERS = {
         ja: "ショスタコーヴィチ",
         birth: 1906,
         years: "1906 - 1975",
+        wiki: "https://ja.wikipedia.org/wiki/%E3%83%89%E3%83%9F%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A4%E3%83%BB%E3%82%B7%E3%83%A7%E3%82%B9%E3%82%BF%E3%82%B3%E3%83%BC%E3%83%B4%E3%82%A3%E3%83%81",
         events: [
             { year: 1906, month: 9, type: 'life', title: "誕生", desc: "ロシア帝国のサンクトペテルブルク（当時）で、ポーランド系リトアニア人の両親のもとに生まれる。" },
             { year: 1919, month: 9, type: 'life', title: "ペトログラード音楽院入学", desc: "13歳でペトログラード音楽院に入学し、ピアノと作曲を学ぶ。アレクサンドル・グラズノフに才能を認められる。" },
@@ -9918,11 +9947,24 @@ function showComposer(id) {
     document.getElementById('chat-title').textContent = 'Ask ' + c.ja;
     document.getElementById('chat-messages').innerHTML = '<div class="message bot">私は' + c.ja + 'です。私の音楽や人生について何か聞きたいことはありますか？</div>';
 
+    const wikiBtn = document.getElementById('btn-wiki');
+    if (c.wiki) {
+        wikiBtn.style.display = '';
+        wikiBtn.dataset.url = c.wiki;
+    } else {
+        wikiBtn.style.display = 'none';
+    }
+
     renderAll(c, id);
     switchView('timeline');
     window.scrollTo(0, 0);
 
     history.pushState({ composer: id }, '', '#' + id);
+}
+
+function openWikipedia() {
+    const url = document.getElementById('btn-wiki').dataset.url;
+    if (url) window.open(url, '_blank', 'noopener');
 }
 
 function backToIndex() {
