@@ -9860,33 +9860,17 @@ function openAppleMusic(composerName, title) {
         window.location.href = 'music://music.apple.com/jp/search?term=' + encodeURIComponent(q);
     }
 }
-function copyTextToClipboard(text) {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).catch(function () { legacyCopyToClipboard(text); });
-    } else {
-        legacyCopyToClipboard(text);
-    }
-}
-function legacyCopyToClipboard(text) {
-    var ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.cssText = 'position:fixed;opacity:0';
-    document.body.appendChild(ta);
-    ta.focus();
-    ta.select();
-    try { document.execCommand('copy'); } catch (e) {}
-    document.body.removeChild(ta);
-}
 function openClassical(composerName, title, opus) {
     var q = composerName + ' ' + title + (opus ? ' ' + opus : '');
-    var url = 'https://classical.music.apple.com/jp/search?term=' + encodeURIComponent(q);
     if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
-        copyTextToClipboard(q);
-        showToast('検索語「' + q + '」をコピーしました。開いたアプリの検索欄をタップ→ペーストしてください', 4500);
-        // Delay navigation so the toast actually renders before the app takes over the screen;
-        // same-tab navigation (vs window.open) is what reliably hands off to the app across Safari/Chrome on iOS.
-        setTimeout(function () { window.location.href = url; }, 800);
+        // Apple Music Classical's universal link (classical.music.apple.com/search) ignores the
+        // "term" query on iOS: Safari hands off to the app on an empty search screen, and other
+        // browsers (Chrome etc.) just land on the app's generic promo page instead of a real search -
+        // there is no client-side workaround for either. Regular Apple Music search does honor
+        // "term" reliably on iOS, so use that instead of a dead end.
+        window.open('https://music.apple.com/search?term=' + encodeURIComponent(q), '_blank');
     } else {
+        var url = 'https://classical.music.apple.com/jp/search?term=' + encodeURIComponent(q);
         window.open(url, '_blank');
     }
 }
