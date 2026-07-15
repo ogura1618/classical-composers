@@ -9865,14 +9865,14 @@ function openClassical(composerName, title, opus) {
     var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) ||
                (/Macintosh/.test(navigator.userAgent) && 'ontouchstart' in window);
     if (isIOS) {
+        var go = function() {
+            showToast('検索語をコピーしました。検索欄に貼り付けてください');
+            window.location.href = 'https://classical.music.apple.com/jp';
+        };
         if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(q).then(function() {
-                showToast('検索語をコピーしました。Classicalアプリを開いて検索欄に貼り付けてください');
-            }).catch(function() {
-                showToast('検索語: ' + q);
-            });
+            navigator.clipboard.writeText(q).then(go, go);
         } else {
-            showToast('検索語: ' + q);
+            go();
         }
     } else {
         var url = 'https://classical.music.apple.com/jp/search?term=' + encodeURIComponent(q);
