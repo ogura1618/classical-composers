@@ -9863,12 +9863,15 @@ function openAppleMusic(composerName, title) {
 function openClassical(composerName, title, opus) {
     var q = composerName + ' ' + title + (opus ? ' ' + opus : '');
     if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
-        // Apple Music Classical's universal link (classical.music.apple.com/search) ignores the
-        // "term" query on iOS: Safari hands off to the app on an empty search screen, and other
-        // browsers (Chrome etc.) just land on the app's generic promo page instead of a real search -
-        // there is no client-side workaround for either. Regular Apple Music search does honor
-        // "term" reliably on iOS, so use that instead of a dead end.
-        window.open('https://music.apple.com/search?term=' + encodeURIComponent(q), '_blank');
+        var ta = document.createElement('textarea');
+        ta.value = q;
+        ta.style.cssText = 'position:fixed;opacity:0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast('検索語をコピーしました。Classicalアプリを開いて検索欄に貼り付けてください');
     } else {
         var url = 'https://classical.music.apple.com/jp/search?term=' + encodeURIComponent(q);
         window.open(url, '_blank');
@@ -10002,7 +10005,6 @@ function renderAll(c, composerKey) {
         const opusHtml = ev.opus ? '<span class="opus-tag"' + catalogTipAttr(ev.opus) + '>' + ev.opus + '</span>' : '';
         const titleEnHtml = ev.title_en ? '<span class="title-en">' + ev.title_en + '</span>' : '';
         const safeTitle = ev.title.replace(/'/g, "\\'").replace(/"/g, '&quot;');
-
         item.innerHTML =
             '<div class="timeline-empty"></div>' +
             '<div class="timeline-dot"></div>' +
