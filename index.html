@@ -420,7 +420,7 @@
         <div id="chat-header"><span id="chat-title">Ask</span><span style="cursor:pointer" onclick="toggleChat()">&#x2715;</span></div>
         <div id="chat-messages"></div>
         <div id="chat-input-area">
-            <input type="text" id="chat-input" placeholder="質問を入力..." onkeydown="if(event.key==='Enter')sendMessage()">
+            <input type="text" id="chat-input" placeholder="質問を入力..." onkeydown="if(event.key==='Enter'&&!event.isComposing&&event.keyCode!==229)sendMessage()">
             <button id="chat-send" onclick="sendMessage()">送信</button>
         </div>
     </div>
