@@ -9862,7 +9862,9 @@ function openAppleMusic(composerName, title) {
 }
 function openClassical(composerName, title, opus) {
     var q = composerName + ' ' + title + (opus ? ' ' + opus : '');
-    if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+    var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) ||
+               (/Macintosh/.test(navigator.userAgent) && 'ontouchstart' in window);
+    if (isIOS) {
         var ta = document.createElement('textarea');
         ta.value = q;
         ta.style.cssText = 'position:fixed;opacity:0';
