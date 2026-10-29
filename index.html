@@ -9868,7 +9868,7 @@ const SUPRA_DATA = {
 };
 
 const DEFAULT_GROQ_KEY = String.fromCharCode(103,115,107,95,101,89,80,79,105,66,89,98,55,100,105,105,87,122,108,77,90,49,81,79,87,71,100,121,98,51,70,89,107,82,116,121,105,81,78,85,104,66,102,72,122,52,73,103,48,105,108,75,70,85,100,83);
-const GROQ_MODEL = 'llama-3.3-70b-versatile';
+const GROQ_MODEL = 'openai/gpt-oss-120b';
 
 let currentComposer = null;
 
@@ -10168,7 +10168,7 @@ async function callGroq(prompt, sys) {
         const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key },
-            body: JSON.stringify({ model: GROQ_MODEL, messages: messages, temperature: 0.7, max_tokens: 4096 })
+            body: JSON.stringify({ model: GROQ_MODEL, messages: messages, temperature: 0.7, max_tokens: 4096, reasoning_effort: 'low' })
         });
         if (!res.ok) {
             const errData = await res.json().catch(() => ({}));
