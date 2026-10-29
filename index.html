@@ -9874,12 +9874,7 @@ let currentComposer = null;
 
 function openAppleMusic(composerName, title) {
     var q = composerName + ' ' + title;
-    var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
-    if (isIOS) {
-        window.open('https://music.apple.com/search?term=' + encodeURIComponent(q), '_blank');
-    } else {
-        window.location.href = 'music://music.apple.com/jp/search?term=' + encodeURIComponent(q);
-    }
+    window.open('https://music.apple.com/jp/search?term=' + encodeURIComponent(q), '_blank');
 }
 function openClassical(composerName, title, opus) {
     var q = composerName + ' ' + title + (opus ? ' ' + opus : '');
